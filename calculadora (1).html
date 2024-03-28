@@ -14,21 +14,24 @@
             <h1>Calculadora financeira</h1>
 
             <div>
-                Digite se o café é Robusta ou Arábica: <input placeholder="Digite apenas Robusta ou Arábica"
-                    id="input_tipo" type="text"> <br><br>
+                Tipo: <select name="" id="select_tipo">
+                    <option selected disabled >Selecione o grão</option>
+                    <option value="robusta">Robusta</option>
+                    <option value="arabica">Arábica</option>
+                </select><br><br>
             </div>
             <div>
-                Digite seu nome: <input placeholder="Digite seu nome" id="input_nome" type="text"> <br><br>
+                Nome: <input placeholder="Digite seu nome" id="input_nome" type="text"> <br><br>
             </div>
             <div>
-                Digite seu email: <input placeholder="Digite seu email " id="input_email" type="email"> <br><br>
+                Email: <input placeholder="Digite seu email " id="input_email" type="email"> <br><br>
             </div>
             <div>
-                Digite quantas sacas você produziu em 2023: <input placeholder="1 saca igual a 60kg" id="input_saca"
+                Quantas sacas você produziu em 2023: <input placeholder="1 saca igual a 60kg" id="input_saca"
                     type="text"><br><br>
             </div>
             <div>
-                Digite quantas sacas você perdeu em 2023: <input placeholder="Digite a quantidade de sacas perdidas"
+                Quantas sacas você perdeu em 2023: <input placeholder="Digite a quantidade de sacas perdidas"
                     id="input_perda" type="text"><br><br>
             </div>
             <div id="ninth" class="buttonBox">
@@ -46,7 +49,7 @@
 <script>
 
     function calcular() {
-        var tipo = input_tipo.value;
+        var tipo = select_tipo.value;
         var nome = input_nome.value;
         var email = input_email.value;
         var saca = Number(input_saca.value);
@@ -64,7 +67,7 @@
             document.getElementById("msg").style.color = "red";
         } else {
 
-            if (tipo == "Arábica" || tipo == "Arabica" || tipo == "arábica" || tipo == "arabica") {
+            if (tipo == "arabica") {
 
                 msg.innerHTML = `Olá ${nome}, obrigado por consultar <b> Sensor Guys </b> <br><br>
             Percebemos com base nos dados informados que você faturou aproximadamente R$${faturamentoArabica} reais em 2023 (preço médio de dez/2023) <br> <br>
@@ -74,10 +77,8 @@
             Com faturamento possivel na proxima safra de: <strong>R$${(faturamentoArabica) + (salvar * 942.08)}</strong> <br><br>`;
 
 
-            } else {
-
-                if (tipo == "Robusta" || tipo == "robusta") {
-                    msg.innerHTML = `Olá ${nome}, obrigado por consultar <b> Sensor Guys </b> <br><br>
+            } else if (tipo == "robusta") {
+                msg.innerHTML = `Olá ${nome}, obrigado por consultar <b> Sensor Guys </b> <br><br>
             Percebemos com base nos dados informados que você faturou aproximadamente R$${faturamentoRobusta} reais em 2023 (preço médio de dez/2023) <br> <br>
             Com uma produção de aproximadamnte de ${kg} kilos <br><br>
             Percebemos que sua perda foi de ${porcentagem}% <br><br>
@@ -85,16 +86,16 @@
             Com faturamento possivel na proxima safra de: <strong> R$${(faturamentoRobusta) + (salvar * 697.05)} </strong>`;
 
 
-                } else {
-                    msg.innerHTML = "Tipo de grão não encontrado, verifique o preenchimento do campo!";
+            } else {
+                msg.innerHTML = "Tipo de grão não encontrado, verifique o preenchimento do campo!";
 
-                }
             }
-
         }
 
-
     }
+
+
+
 
     /*
     
