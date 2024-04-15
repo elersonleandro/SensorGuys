@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caculadora Financeira</title>
+    <link rel="stylesheet" href="/style/">
+</head>
+
+<body>
+    <div class="pai">
+        <div class="centro fonte box">
+            <h1>Calculadora financeira</h1>
+
+            <div>
+                Tipo: <select name="" id="select_tipo">
+                    <option selected disabled >Selecione o grão</option>
+                    <option value="robusta">Robusta</option>
+                    <option value="arabica">Arábica</option>
+                </select><br><br>
+            </div>
+            <div>
+                Nome: <input placeholder="Digite seu nome" id="input_nome" type="text"> <br><br>
+            </div>
+            <div>
+                Email: <input placeholder="Digite seu email " id="input_email" type="email"> <br><br>
+            </div>
+            <div>
+                Quantas sacas você produziu em 2023: <input placeholder="1 saca igual a 60kg" id="input_saca"
+                    type="text"><br><br>
+            </div>
+            <div>
+                Quantas sacas você perdeu em 2023: <input placeholder="Digite a quantidade de sacas perdidas"
+                    id="input_perda" type="text"><br><br>
+            </div>
+            <div id="ninth" class="buttonBox">
+                <button onclick="calcular()">Calcular</button>
+            </div>
+        </div>
+        <div class="box2">
+            <p id="msg" class="fonte"></p>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function calcular() {
+        var tipo = select_tipo.value;
+        var nome = input_nome.value;
+        var email = input_email.value;
+        var saca = Number(input_saca.value);
+        var perda = Number(input_perda.value);
+        var porcentagem = 100 * perda / saca;
+        var salvar = perda * 0.2;
+
+        var faturamentoArabica = (saca - perda) * 942.08;
+        var faturamentoRobusta = (saca - perda) * 697.05;
+
+        var kg = saca * 60;
+
+        if (nome == "" || email == "" || saca == "" || tipo == "") {
+            msg.innerHTML = "Preencha todos os campos!";
+            document.getElementById("msg").style.color = "red";
+        } else {
+
+            if (tipo == "arabica") {
+
+                msg.innerHTML = `Olá ${nome}, obrigado por consultar <b> Sensor Guys </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${faturamentoArabica} reais em 2023 (preço médio de dez/2023) <br> <br>
+            Com uma produção de aproximadamnte de ${kg} kilos <br><br>
+            Percebemos que sua perda foi de ${porcentagem}% <br><br>
+            Com base na ultima safra, poderíamos salvar: R$${salvar * 942.08} ou ${salvar} sacas<br><br>
+            Com faturamento possivel na proxima safra de: <strong>R$${(faturamentoArabica) + (salvar * 942.08)}</strong> <br><br>`;
+
+
+            } else if (tipo == "robusta") {
+                msg.innerHTML = `Olá ${nome}, obrigado por consultar <b> Sensor Guys </b> <br><br>
+            Percebemos com base nos dados informados que você faturou aproximadamente R$${faturamentoRobusta} reais em 2023 (preço médio de dez/2023) <br> <br>
+            Com uma produção de aproximadamnte de ${kg} kilos <br><br>
+            Percebemos que sua perda foi de ${porcentagem}% <br><br>
+            Com base na ultima safra, poderíamos salvar: R$${salvar * 697.05} ou ${salvar} sacas<br><br>
+            Com faturamento possivel na proxima safra de: <strong> R$${(faturamentoRobusta) + (salvar * 697.05)} </strong>`;
+
+
+            } else {
+                msg.innerHTML = "Tipo de grão não encontrado, verifique o preenchimento do campo!";
+
+            }
+        }
+
+    }
+
+
+
+
+    /*
+    
+    preço arabica: 996,52
+    preço robusta: 845,75
+    
+    amarzenamento das sacas de café: base de 4 por 2, com uma altura de 18 a 25 sacos
+    
+    uma saca de café cru da 45 de torrado
+    
+    se a umidade estiver menor que 10% será necessario mais café para compor a saca, se ultrapassar os 12% occore o branqueamento
+    
+    */
+
+</script>
