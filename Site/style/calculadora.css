@@ -1,0 +1,88 @@
+@font-face {
+  font-family: sofia-black;
+  src: url("../font/Sofia_Sans_Condensed/static/SofiaSansCondensed-Black.ttf");
+}
+@font-face {
+  font-family: sofia-bold;
+  src: url(../font/Sofia_Sans_Condensed/static/SofiaSansCondensed-Bold.ttf);
+}
+
+.corpo
+{
+    background-color: #46261f;
+    width: 100%;
+    height: 89vh;
+    display: flex;
+}
+
+.corpo_dentro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 3%;
+    margin-left: 10%;
+    color: black;
+    font-size: 35px;
+    width: 77vi;
+    height: 77vh;
+    padding: 0;
+    background-color: #D9C9BA;
+    border: 2px solid #D9C9BA;
+    border-radius: 25px;
+    
+}
+
+.caixa1 {
+    margin-top: 0%;
+    margin-left: 0%;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    width: 37vi;
+    height: 65vh;
+    padding: 2px;
+    background-color: #5F4039;
+    opacity: 77%;
+    border-radius: 25px;
+    
+}
+
+
+.caixa2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 0%;
+    margin-left: 5%;
+    color: rgb(255, 255, 255);
+    font-size: 35px;
+    width: 23vi;
+    height: 65vh;
+    padding: 2px;
+    background-color: #5F4039;
+    opacity: 51%;
+    border-radius: 25px;
+    
+}
+
+.input {
+    width: 15vi;
+    max-width: 220px;
+    height: 1.5vh;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1.5px solid #725c58;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0px 0px 20px -18px;
+  }
+  
+  
+  .input:active {
+    transform: scale(0.95);
+  }
+  
+  .input:focus {
+    border: 2px solid grey;
+  }
