@@ -92,7 +92,14 @@ header
 .header_right ul li
 {
     margin: 0 20px 0 0;
-    font-size: 19px
+    font-size: 19px;
+    
+}
+
+.header_right ul li a
+{
+    text-decoration:  none;
+    color: white;
 }
 .header .header_left img
 {
