@@ -1,0 +1,82 @@
+
+@font-face {
+    font-family: sofia-normal;
+    src: url("../font/Sofia_Sans_Condensed/SofiaSansCondensed-Italic-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: sofia-black;
+    src: url("../font/Sofia_Sans_Condensed/static/SofiaSansCondensed-Black.ttf");
+}
+
+.corpo {
+    background-color: #46261f;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.corpo_dentro {
+    display: flex;
+    justify-content: center;
+    align-items: self-start;
+    text-align: center;
+    color: black;
+    font-size: 15px;
+    width: 80%;
+    height: fit-content;
+    padding: 0;
+    background-color: #D9C9BA;
+    border: 2px solid #D9C9BA;
+    border-radius: 25px;
+    margin-top: 7%;
+    min-height: 70vh;
+    
+
+}
+
+.corpo_func {
+    margin: 20px 0 0 0;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 7vh;
+    background: #F1E3D6;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.lista{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    flex-direction: column;
+    margin-top: 0%;
+    width: 80%;
+    font-family: sofia-normal;
+    font-size: 20px;
+}
+.images img
+{
+    margin-right: 20px;
+    width: 35px;
+    height: 35px;
+}
+
+.images 
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+}
+
+.texto span 
+{
+    margin: 10px;
+    text-align: center;
+}
