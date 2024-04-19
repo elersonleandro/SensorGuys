@@ -63,8 +63,8 @@
 .images img
 {
     margin-right: 20px;
-    width: 35px;
-    height: 35px;
+    width: 15px;
+    height: 15px;
 }
 
 .images 
@@ -84,4 +84,6 @@
     display: flex;
     align-self: flex-end;
     padding: 5px;
+    width: 30px;
+    height: 30px;
 }
