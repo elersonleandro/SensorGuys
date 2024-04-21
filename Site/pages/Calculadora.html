@@ -37,18 +37,23 @@
     <div class="corpo">
         <div class="corpo_dentro">
             <div class="caixa1">
-            <h1>Calculadora Financeira</h1>
-            <p>Café Robusta ou Arábica?</p>
-            <input  id="input_infocafe" type="text" name="text" class="input">
-            <p>Quantas sacas você produziu no ultimo ano?</p>
-            <input  id="input_producao" type="text" name="text" class="input">
-            <p>Quantas sacas você perdeu no ultimo ano?</p>
-            <input  id="input_perda" type="text" name="text" class="input">
-            <p>Deseja receber as informações por E-mail?</p>
-            
+                <h2>Calculadora Financeira</h2>
+                <p>Café Robusta ou Arábica?</p>
+                <select name="" id="select_cafe" class="select">
+                    <option value="" selected disabled>Selecione o Tipo</option>
+                    <option value="robusta">Robusta</option>
+                    <option value="arabica">Arábica</option>
+                </select>
+                <p>Quantas sacas você produziu no ultimo ano?</p>
+                <input id="input_saca" type="text" name="text" class="input">
+                <p>Quantas sacas você perdeu no ultimo ano?</p>
+                <input id="input_perda" type="text" name="text" class="input">
+                <p>Deseja receber as informações por E-mail?</p>
+                <button onclick="calcular()" class="button">Calcular</button>
+
             </div>
             <div class="caixa2">
-
+                <div id="msg"></div>
             </div>
         </div>
     </div>
@@ -74,4 +79,71 @@
         </div>
     </footer>
 </body>
+
 </html>
+
+<script>
+
+    function calcular() {
+        var tipo = select_cafe.value;
+        var saca = Number(input_saca.value);
+        var perda = Number(input_perda.value);
+        var porcentagem = 100 * perda / saca;
+        var salvar = perda * 0.2;
+
+        var fatAra = saca * 942.08;
+        var fatRob = saca * 697.05;
+
+        var kg = saca * 60;
+
+        if (saca == "" || tipo == "" || perda == "") {
+            msg.innerHTML = "Preencha todos os campos!";
+            document.getElementById("msg").style.color = "red";
+        } else {
+
+            if (tipo == "arabica") {
+
+                msg.innerHTML = `Olá, obrigado por consultar <b> Sensor Guys </b> <br><br>
+                Percebemos com base nos dados informados que você faturou aproximadamente R$${fatAra} reais em 2023 (preço médio de dez/2023) <br> <br>
+                Com uma produção de aproximadamnte de ${kg} kilos <br><br>
+                Percebemos que sua perda foi de ${porcentagem}% <br><br>
+                Com base na ultima safra, poderíamos salvar: R$${salvar * 942.08} ou ${salvar} sacas<br><br>
+                Com faturamento possivel na proxima safra de: <strong>R$${(saca * 942.08) + (salvar * 942.08)}</strong> <br><br>`;
+
+
+            } else {
+
+                if (tipo == "robusta") {
+                    msg.innerHTML = `Olá, obrigado por consultar <b> Sensor Guys </b> <br><br>
+                Percebemos com base nos dados informados que você faturou aproximadamente R$${fatRob} reais em 2023 (preço médio de dez/2023) <br> <br>
+                Com uma produção de aproximadamnte de ${kg} kilos <br><br>
+                Percebemos que sua perda foi de ${porcentagem}% <br><br>
+                Com base na ultima safra, poderíamos salvar: R$${salvar * 697.05} ou ${salvar} sacas<br><br>
+                Com faturamento possivel na proxima safra de: <strong> R$${(saca * 697.05) + (salvar * 697.05)} </strong>`;
+
+
+                } else {
+                    msg.innerHTML = "Tipo de grão não encontrado, verifique o preenchimento do campo!";
+
+                }
+            }
+
+        }
+
+
+    }
+
+    /*
+    
+    preço arabica: 996,52
+    preço robusta: 845,75
+    
+    amarzenamento das sacas de café: base de 4 por 2, com uma altura de 18 a 25 sacos
+    
+    uma saca de café cru da 45 de torrado
+    
+    se a umidade estiver menor que 10% será necessario mais café para compor a saca, se ultrapassar os 12% occore o branqueamento
+    
+    */
+
+</script>
