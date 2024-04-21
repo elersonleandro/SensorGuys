@@ -47,8 +47,7 @@
                 <p>Quantas sacas você produziu no ultimo ano?</p>
                 <input id="input_saca" type="text" name="text" class="input">
                 <p>Quantas sacas você perdeu no ultimo ano?</p>
-                <input id="input_perda" type="text" name="text" class="input">
-                <p>Deseja receber as informações por E-mail?</p>
+                <input id="input_perda" type="text" name="text" class="input"><br>
                 <button onclick="calcular()" class="button">Calcular</button>
 
             </div>
@@ -103,7 +102,7 @@
 
             if (tipo == "arabica") {
 
-                msg.innerHTML = `Olá, obrigado por consultar <b> Sensor Guys </b> <br><br>
+                msg.innerHTML = `Olá, obrigado por consultar <b> View Coffee </b> <br><br>
                 Percebemos com base nos dados informados que você faturou aproximadamente R$${fatAra} reais em 2023 (preço médio de dez/2023) <br> <br>
                 Com uma produção de aproximadamnte de ${kg} kilos <br><br>
                 Percebemos que sua perda foi de ${porcentagem}% <br><br>
@@ -114,7 +113,7 @@
             } else {
 
                 if (tipo == "robusta") {
-                    msg.innerHTML = `Olá, obrigado por consultar <b> Sensor Guys </b> <br><br>
+                    msg.innerHTML = `Olá, obrigado por consultar <b> View Coffee </b> <br><br>
                 Percebemos com base nos dados informados que você faturou aproximadamente R$${fatRob} reais em 2023 (preço médio de dez/2023) <br> <br>
                 Com uma produção de aproximadamnte de ${kg} kilos <br><br>
                 Percebemos que sua perda foi de ${porcentagem}% <br><br>
