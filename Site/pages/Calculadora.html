@@ -36,6 +36,21 @@
     <br><br><br><br><br>
     <div class="corpo">
         <div class="corpo_dentro">
+            <div class="texto">
+                <p class="titulo_calculadora">
+                    Com base nas suas perdas<br>
+                    proteje seus ganhos
+                </p>
+                <p class="descricao_calculadora">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Ut dapibus placerat lorem, sed tristique metus faucibus ut.
+                    Aenean ut consectetur ligula. Mauris ac felis a nisl iaculis egestas.
+                    Curabitur orci ligula, lobortis at commodo sed, hendrerit sit amet felis.
+                    Curabitur pellentesque mi mollis rhoncus congue. Mauris consequat, magna nec vehicula ultricies,
+                    Curabitur orci ligula, lobortis at commodo sed, hendrerit sit amet felis.
+                    Curabitur pellentesque mi mollis rhoncus congue. Mauris consequat, magna nec vehicula ultricies,
+                </p>
+            </div>
             <div class="caixa1">
                 <h2>Calculadora Financeira</h2>
                 <p>Café Robusta ou Arábica?</p>
@@ -51,9 +66,7 @@
                 <button onclick="calcular()" class="button">Calcular</button>
 
             </div>
-            <div class="caixa2">
-                <div id="msg"></div>
-            </div>
+
         </div>
     </div>
 
@@ -77,11 +90,29 @@
 
         </div>
     </footer>
+    <div class="modal-container" id="div_modal">
+        <div class="modal">
+          <h2>Simulando perdas</h2>
+          <br />
+          <span id="span_resposta"></span>
+          <br />
+          <div class="btns">
+            <a href="../index.html"><button class="btnVoltar" onclick="closeModal()">Contate-nos</button></a>
+            <button class="btnFechar" onclick="closeModal()">X</button>
+          </div>
+        </div>
+      </div>
 </body>
 
 </html>
 
 <script>
+
+    const modal = div_modal
+
+    function closeModal(){
+        modal.classList.remove('active')
+    }
 
     function calcular() {
         var tipo = select_cafe.value;
@@ -97,33 +128,34 @@
 
         if (saca == "" || tipo == "" || perda == "") {
             msg.innerHTML = "Preencha todos os campos!";
-            document.getElementById("msg").style.color = "red";
+            document.getElementById("span_resposta").style.color = "red";
         } else {
 
             if (tipo == "arabica") {
 
-                msg.innerHTML = `Olá, obrigado por consultar <b> View Coffee </b> <br><br>
+                span_resposta.innerHTML = `Olá, obrigado por consultar <b> View Coffee </b> <br><br>
                 Percebemos com base nos dados informados que você faturou aproximadamente R$${fatAra} reais em 2023 (preço médio de dez/2023) <br> <br>
                 Com uma produção de aproximadamnte de ${kg} kilos <br><br>
                 Percebemos que sua perda foi de ${porcentagem}% <br><br>
                 Com base na ultima safra, poderíamos salvar: R$${salvar * 942.08} ou ${salvar} sacas<br><br>
                 Com faturamento possivel na proxima safra de: <strong>R$${(saca * 942.08) + (salvar * 942.08)}</strong> <br><br>`;
+                modal.classList.add('active');
 
 
             } else {
 
                 if (tipo == "robusta") {
-                    msg.innerHTML = `Olá, obrigado por consultar <b> View Coffee </b> <br><br>
+                    span_resposta.innerHTML = `Olá, obrigado por consultar <b> View Coffee </b> <br><br>
                 Percebemos com base nos dados informados que você faturou aproximadamente R$${fatRob} reais em 2023 (preço médio de dez/2023) <br> <br>
                 Com uma produção de aproximadamnte de ${kg} kilos <br><br>
                 Percebemos que sua perda foi de ${porcentagem}% <br><br>
                 Com base na ultima safra, poderíamos salvar: R$${salvar * 697.05} ou ${salvar} sacas<br><br>
                 Com faturamento possivel na proxima safra de: <strong> R$${(saca * 697.05) + (salvar * 697.05)} </strong>`;
-
+                modal.classList.add('active');
 
                 } else {
-                    msg.innerHTML = "Tipo de grão não encontrado, verifique o preenchimento do campo!";
-
+                    span_resposta.innerHTML = "Tipo de grão não encontrado, verifique o preenchimento do campo!";
+                    modal.classList.add('active');
                 }
             }
 

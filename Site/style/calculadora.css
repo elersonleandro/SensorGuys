@@ -2,10 +2,12 @@
   font-family: sofia-normal;
   src: url("../font/Sofia_Sans_Condensed/SofiaSansCondensed-Italic-VariableFont_wght.ttf");
 }
+
 @font-face {
   font-family: sofia-bold;
   src: url(../font/Sofia_Sans_Condensed/static/SofiaSansCondensed-Bold.ttf);
 }
+
 @font-face {
   font-family: inter;
   src: url(../font/Inter/Inter-VariableFont_slnt\,wght.ttf);
@@ -25,7 +27,7 @@
 
 .corpo_dentro {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
   margin-top: 3%;
@@ -60,8 +62,12 @@
 
 }
 
+.teste {
+  display: flex;
+  align-self: flex-start;
+}
 
-.caixa2 {
+/* .caixa2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +84,7 @@
   border-radius: 25px;
   padding-inline: 5px;
   font-family: inter-bold;
-}
+} */
 
 .button {
   background-color: #402019;
@@ -93,97 +99,162 @@
   border: 3px solid #402019;
   margin-bottom: 30px;
 }
+
 .button:hover,
-.button:focus
-{
-    background-color: #736053;
-    height: 6vh;
-    width: 14vw;
-    color: white;
-    font-family: inter;
-    border-radius: 15px ;
-    font-size: 15px;
-    border: 0;
-    border: 3px solid #402019;
-    transition: 100ms linear;
-}
-.select
-{
-    width: 75%;
-    height: 42px;
-    background-color: #736053;
-    border: 4px solid #402019 ;
-    border-radius: 50px;
-    padding-left: 20px;
-    color: white;
-    font-family: inter;
-    font-size: 17px;
-    transition: 100ms linear;
-    appearance: none;
-    position: relative;
+.button:focus {
+  background-color: #736053;
+  height: 6vh;
+  width: 14vw;
+  color: white;
+  font-family: inter;
+  border-radius: 15px;
+  font-size: 15px;
+  border: 0;
+  border: 3px solid #402019;
+  transition: 100ms linear;
 }
 
-.select:focus
-{
-    width: 75%;
-    height: 30px;
-    background-color: #402019;
-    border: 4px solid #736053 ;
-    border-radius: 50px;
-    color: white;
-    padding-left: 20px;
-    transition: 100ms linear;
+.select {
+  width: 75%;
+  height: 42px;
+  background-color: #736053;
+  border: 4px solid #402019;
+  border-radius: 50px;
+  padding-left: 20px;
+  color: white;
+  font-family: inter;
+  font-size: 17px;
+  transition: 100ms linear;
+  appearance: none;
+  position: relative;
 }
 
-.select option
-{
-    background-color: #D9C9BA;
-    color: black;
-    border-radius: 50vh;
+.select:focus {
+  width: 75%;
+  height: 30px;
+  background-color: #402019;
+  border: 4px solid #736053;
+  border-radius: 50px;
+  color: white;
+  padding-left: 20px;
+  transition: 100ms linear;
 }
 
-.select option.selected
-{
-    background-color: #402019;
-    color: white;
-
-}
-.input
-{
-    width: 70%;
-    height: 30px;
-    background-color: #736053;
-    border: 4px solid #402019 ;
-    border-radius: 50px;
-    color: white;
-    padding-left: 20px;
-    transition: 100ms linear;
+.select option {
+  background-color: #D9C9BA;
+  color: black;
+  border-radius: 50vh;
 }
 
-.input:focus
-{
-    width: 70%;
-    height: 35px;
-    background-color: #402019;
-    border: 4px solid #736053 ;
-    border-radius: 50px;
-    color: white;
-    padding-left: 20px;
-    transition: 100ms linear;
+.select option.selected {
+  background-color: #402019;
+  color: white;
+
 }
 
-.input::placeholder
-{
-    
-    color: white;
-    font-family: inter;
-    font-size: 17px;
-    transition: 100ms linear;
+.input {
+  width: 70%;
+  height: 30px;
+  background-color: #736053;
+  border: 4px solid #402019;
+  border-radius: 50px;
+  color: white;
+  padding-left: 20px;
+  transition: 100ms linear;
 }
-.input:focus::placeholder
-{
-    color: transparent;
-    transition: 100ms linear;
-    font-size: 17px;
-    font-family: inter;
+
+.input:focus {
+  width: 70%;
+  height: 35px;
+  background-color: #402019;
+  border: 4px solid #736053;
+  border-radius: 50px;
+  color: white;
+  padding-left: 20px;
+  transition: 100ms linear;
+}
+
+.input::placeholder {
+
+  color: white;
+  font-family: inter;
+  font-size: 17px;
+  transition: 100ms linear;
+}
+
+.input:focus::placeholder {
+  color: transparent;
+  transition: 100ms linear;
+  font-size: 17px;
+  font-family: inter;
+}
+
+.texto {
+  font-size: 16px;
+  margin-left: 40px;
+  text-align: justify;
+  font-family: inter;
+}
+
+.descricao_calculadora {
+  line-height: 20px;
+  width: 400px;
+  font-family: inter;
+  font-size: 20px;
+}
+
+.titulo_calculadora {
+  font-family: sofia-bold;
+  font-size: 30px;
+  color: #5F4039;
+}
+
+.modal-container {
+  width: 100%;
+  position: fixed;
+  top: 30%;
+  display: none;
+  z-index: 999;
+  justify-content: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background-color: #5F4039;
+  border-radius: 25px;
+  width: 50%;
+  font-family: inter;
+  border: solid 1px #402019;
+  color: white;
+}
+
+.btnFechar {
+  background-color: #D9C9BA !important;
+}
+
+.btnVoltar {
+  background-color: #D9C9BA !important;
+}
+.active {
+  display: flex;
+}
+
+.active .modal {
+  animation: modal .4s;
+}
+@keyframes modal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -60px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+span {
+  margin: 10px auto;
 }
