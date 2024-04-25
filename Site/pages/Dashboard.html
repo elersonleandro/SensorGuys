@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../style/header.css">
     <link rel="stylesheet" href="../style/dashboard.css">
     <link rel="stylesheet" href="../style/footer.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -33,16 +34,18 @@
     <section>
         <div class="dashboard">
             <div class="armazem">
-                <select id="select_armazem" onchange="mudarArmazem()" >
-                    <option value= 1 >Armazém 1</option>
-                    <option value= 2 >Armazém 2</option>
-                    <option value= 3 >Armazém 3</option>
+                <select id="select_armazem" onchange="mudarArmazem()">
+                    <option value=1>Armazém 1</option>
+                    <option value=2>Armazém 2</option>
+                    <option value=3>Armazém 3</option>
                 </select>
 
             </div>
             <div class="dado">
                 <div class="card">
-                    <h1>Temperatura</h1>
+                    <div id="temperatura_card">
+                        <h1>Temperatura</h1>
+                    </div>
                     <div class="card_content">
                         <div class="dado_card">
                             <span>Atual</span>
@@ -57,7 +60,10 @@
                 </div>
 
                 <div class="card">
-                    <h1>Umidade</h1>
+                    <div id="umidade_card">
+                        <h1>Umidade</h1>
+                    </div>
+                    
                     <div class="card_content">
                         <div class="dado_card">
                             <span>Atual</span>
@@ -127,7 +133,7 @@
 
 
 <script>
-    
+
     const contextografico_temperatura1 = document.getElementById('grafico_temperatura1');
     const contextografico_umidade1 = document.getElementById('grafico_umidade1');
     const contextografico_temperatura2 = document.getElementById('grafico_temperatura2');
@@ -162,7 +168,7 @@
                         label: 'Umidade',
                         backgroundColor: '#D9C9BA',
                         borderColor: '#D9C9BA',
-                        data: [60, 62, 61, 63, 62, 60]
+                        data: [60, 62, 61, 63, 62, 72]
                     }
 
                 ]
@@ -216,7 +222,7 @@
                         label: 'Temperatura',
                         backgroundColor: '#D9C9BA',
                         borderColor: '#D9C9BA',
-                        data: [25.9, 25.42, 26.39, 25.45, 26.32, 36]
+                        data: [25.9, 25.42, 26.39, 25.45, 26.32, 25.42]
                     }
 
                 ]
@@ -243,45 +249,87 @@
         }
     )
 
-   
+
 
 </script>
 
 <script>
-     function mudarArmazem()
-    {
+    const Toast = Swal.mixin({
+        toast: true,
+        background: 'black',
+        color: 'white',
+        title: "Alerta!",
+        icon: 'warning',
+        toast: true,
+                
+    });
+
+    function mudarArmazem() {
         var armazem = select_armazem.value;
         var temperaturaValue = 0;
         var umidadeValue = 0;
-        if(armazem == 1)
-    {
-        graphic1.style='display: flex;';
-        graphic2.style = 'display: none';
-        graphic3.style = 'display: none';
-        temperaturaValue = 20
-        temperatura.innerHTML = `${temperaturaValue}°C`
-    }
-    if(armazem == 2)
-    {
-        graphic1.style='display: none;';
-        graphic2.style = 'display: flex';
-        graphic3.style = 'display: none';
-        temperaturaValue = 27.86
-        umidadeValue = 72.6
-        umidade.innerHTML = `${umidadeValue}%`;
-        temperatura.innerHTML = `${temperaturaValue}°C`
-    }
-    if(armazem == 3)
-    {
-        graphic1.style='display: none;';
-        graphic2.style = 'display: none';
-        graphic3.style = 'display: flex';
-        temperaturaValue = 25.42
-        umidadeValue = 60
-        umidade.innerHTML = `${umidadeValue}%`;
-        temperatura.innerHTML = `${temperaturaValue}°C`
-    }
 
-    }
-    
+        if (armazem == 1) {
+            graphic1.style = 'display: flex;';
+            graphic2.style = 'display: none';
+            graphic3.style = 'display: none';
+            umidadeValue = 60 
+            temperaturaValue = 20;
+            
+        }
+        if (armazem == 2) {
+            graphic1.style = 'display: none;';
+            graphic2.style = 'display: flex';
+            graphic3.style = 'display: none';
+            temperaturaValue = 31
+            umidadeValue = 72.6
+        }
+        if (armazem == 3) {
+            graphic1.style = 'display: none;';
+            graphic2.style = 'display: none';
+            graphic3.style = 'display: flex';
+            temperaturaValue = 25.42
+            umidadeValue = 60
+        }
+
+            umidade.innerHTML = `${umidadeValue}%`
+            temperatura.innerHTML = `${temperaturaValue}°C`
+
+        if(temperaturaValue > 30 && umidadeValue > 65)
+        {
+            Toast.fire({
+                text: 'Temperatura e umidade elevadas!'
+            })
+        }
+        else if (temperaturaValue > 30) {
+            Toast.fire({
+                text: 'Temperatura elevada!'
+            })
+        }
+
+        else if (umidadeValue > 60)
+        {
+            Toast.fire({
+                text: "Umidade elevada!"
+            })  
+        }
+        else if (temperaturaValue < 15 && umidadeValue < 45)
+        {
+            Toast.fire({
+                text: "Temperatura e umidade decaidas!"
+            })  
+        }
+        else if(temperaturaValue < 15){
+            Toast.fire({
+                text: "Temperatura Decaída!",
+            })  
+        }
+        else if(umidadeValue < 45)
+        {
+            Toast.fire({
+                text: "Umidade Decaída!",
+            }) 
+        }
+        }
+
 </script>
