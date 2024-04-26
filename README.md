@@ -72,7 +72,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 ```bash
 
 # Clone este repositório
-$ git clone (repositorio)
+$ git clone https://github.com/elersonleandro/ViewCoffee
 
 # Instale as dependências
 $ npm install
