@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard || View Coffee</title>
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="../style/footer.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="header_left">
+                <a href="../index.html"><img src="../img/logo_image.png" alt="logo do projeto"></a>
+            </div>
+            <nav class="navbar">
+                <div class="header_center">
+                    <ul>
+                        <li><a href="GerenciarFunc.html">Gerenciar Funcionários</a></li>
+                    </ul>
+                </div>
+                <div class="header_right">
+                    <ul>
+                        <img src="../img/headerLinha.png" alt="">
+                        <li><a href="../index.html">Página Inicial</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="dashboard">
+            <div class="armazem">
+                <select id="select_armazem" onchange="mudarArmazem()">
+                    <option value=1>Armazém 1</option>
+                    <option value=2>Armazém 2</option>
+                    <option value=3>Armazém 3</option>
+                </select>
+
+            </div>
+            <div class="grafico" id="graphic1">
+                <div class="content_grafico">
+                    <canvas id="grafico_temperatura1"></canvas>
+                </div>
+                <div class="content_grafico">
+                    <canvas id="grafico_umidade1"></canvas>
+                </div>
+            </div>
+            <div class="grafico" id="graphic2">
+                <div class="content_grafico">
+                    <canvas id="grafico_temperatura2"></canvas>
+                </div>
+                <div class="content_grafico">
+                    <canvas id="grafico_umidade2"></canvas>
+                </div>
+            </div>
+    </section>
+
+    <footer>
+        <div id='footer' class='footer'>
+            <div class='rectangle39'>
+                <img id='viewcoffee' class='viewcoffee' src='../img/logo_image.png'>
+            </div>
+            <div class='rectangle38'>
+
+                <div id='contate-nos' class='contate-nos'>
+                    Contate-nos
+                    <img id='outlook' class='outlook' src="../img/img_outlook.png">
+                </div>
+            </div>
+
+            <div class='todosdireitosreservados'>
+                @ 2024 todos direitos reservados
+
+            </div>
+
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+
+
+<script>
+
+    const contextografico_temperatura1 = document.getElementById('grafico_temperatura1');
+    const contextografico_umidade1 = document.getElementById('grafico_umidade1');
+    const contextografico_temperatura2 = document.getElementById('grafico_temperatura2');
+    const contextografico_umidade2 = document.getElementById('grafico_umidade2');
+    const contextografico_temperatura3 = document.getElementById('grafico_temperatura3');
+    const contextografico_umidade3 = document.getElementById('grafico_umidade3');
+    new Chart(contextografico_temperatura1,
+        {
+            type: 'bar',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                datasets: [
+                    {
+                        label: 'Temperatura',
+                        backgroundColor: '#D9C9BA',
+                        borderColor: '#D9C9BA',
+                        data: [26.2696, 27.0696, 25.7916129, 25.98
+                            , 25.9316129, 25.65225806, 25.5283871, 25.43548387, 25.86967742, 25.83806452, 25.59032258, 25.756]
+                    }
+
+                ]
+
+            }
+        }
+    )
+    new Chart(contextografico_umidade1,
+        {
+            type: 'bar',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                datasets: [
+                    {
+                        label: 'Umidade',
+                        backgroundColor: '#D9C9BA',
+                        borderColor: '#D9C9BA',
+                        data: [62.71290323, 66.80322581, 65.63870968, 71.5516129, 75.63870968, 68.01612903, 61.95483871, 60.62258065, 70.33225806, 65.02903226, 62.29354839, 70.06666667]
+                    }
+
+                ]
+
+            }
+        }
+    )
+    new Chart(contextografico_temperatura2,
+        {
+            type: 'line',
+            data: {
+                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                datasets: [
+                    {
+                        label: 'Temperatura',
+                        backgroundColor: '#D9C9BA',
+                        borderColor: '#D9C9BA',
+                        data: [25.42, 25.42, 26.39, 27.37, 28.84, 27.86]
+                    }
+
+                ]
+
+            }
+        }
+    )
+    new Chart(contextografico_umidade2,
+        {
+            type: 'line',
+            data: {
+                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                datasets: [
+                    {
+                        label: 'Umidade',
+                        backgroundColor: '#D9C9BA',
+                        borderColor: '#D9C9BA',
+                        data: [60.2, 60.3, 62.9, 70.2, 72.7, 72.6]
+                    }
+
+                ]
+
+            }
+        }
+    )
+    new Chart(contextografico_temperatura3,
+        {
+            type: 'bar',
+            data: {
+                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                datasets: [
+                    {
+                        label: 'Temperatura',
+                        backgroundColor: '#D9C9BA',
+                        borderColor: '#D9C9BA',
+                        data: [25.9, 25.42, 26.39, 25.45, 26.32, 25.42]
+                    }
+
+                ]
+
+            }
+        }
+    )
+    new Chart(contextografico_umidade3,
+        {
+            type: 'line',
+            data: {
+                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                datasets: [
+                    {
+                        label: 'Umidade',
+                        backgroundColor: '#D9C9BA',
+                        borderColor: '#D9C9BA',
+                        data: [71, 71.1, 60.2, 61.5, 61.8, 60]
+                    }
+
+                ]
+
+            }
+        }
+    )
+
+
+
+</script>
+
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        background: 'black',
+        color: 'white',
+        title: "Alerta!",
+        icon: 'warning',
+        toast: true,
+
+    });
+
+    function mudarArmazem() {
+        var armazem = select_armazem.value;
+        var temperaturaValue = 0;
+        var umidadeValue = 0;
+
+        if (armazem == 1) {
+            graphic1.style = 'display: flex;';
+            graphic2.style = 'display: none';
+            graphic3.style = 'display: none';
+            umidadeValue = 60
+            temperaturaValue = 20;
+
+        }
+        if (armazem == 2) {
+            graphic1.style = 'display: none;';
+            graphic2.style = 'display: flex';
+            graphic3.style = 'display: none';
+            temperaturaValue = 31
+            umidadeValue = 72.6
+        }
+        if (armazem == 3) {
+            graphic1.style = 'display: none;';
+            graphic2.style = 'display: none';
+            graphic3.style = 'display: flex';
+            temperaturaValue = 25.42
+            umidadeValue = 60
+        }
+
+        umidade.innerHTML = `${umidadeValue}%`
+        temperatura.innerHTML = `${temperaturaValue}°C`
+
+        if (temperaturaValue > 30 && umidadeValue > 65) {
+            Toast.fire({
+                text: 'Temperatura e umidade elevadas!'
+            })
+        }
+        else if (temperaturaValue > 30) {
+            Toast.fire({
+                text: 'Temperatura elevada!'
+            })
+        }
+
+        else if (umidadeValue > 60) {
+            Toast.fire({
+                text: "Umidade elevada!"
+            })
+        }
+        else if (temperaturaValue < 15 && umidadeValue < 45) {
+            Toast.fire({
+                text: "Temperatura e umidade decaidas!"
+            })
+        }
+        else if (temperaturaValue < 15) {
+            Toast.fire({
+                text: "Temperatura Decaída!",
+            })
+        }
+        else if (umidadeValue < 45) {
+            Toast.fire({
+                text: "Umidade Decaída!",
+            })
+        }
+    }
+
+</script>
