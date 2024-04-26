@@ -122,7 +122,7 @@
                 datasets: [
                     {
                         label: 'Umidade',
-                        backgroundColor: '#D9C9BA',
+                        backgroundColor: '#cc7626',
                         borderColor: '#D9C9BA',
                         data: [62.71290323, 66.80322581, 65.63870968, 71.5516129, 75.63870968, 68.01612903, 61.95483871, 60.62258065, 70.33225806, 65.02903226, 62.29354839, 70.06666667]
                     }
@@ -134,15 +134,16 @@
     )
     new Chart(contextografico_temperatura2,
         {
-            type: 'line',
+            type: 'bar',
             data: {
-                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                 datasets: [
                     {
-                        label: 'Temperatura',
+                        label: 'Desvio padrão temperatura',
                         backgroundColor: '#D9C9BA',
                         borderColor: '#D9C9BA',
-                        data: [25.42, 25.42, 26.39, 27.37, 28.84, 27.86]
+                        data: [1.156165754, 0.985339253, 0.200693905, 0.27903058, 0.120378349, 0.239875098,0.200693905,0.084808654,0.210475405,0.160913107,0.229662921,0.282967607
+]
                     }
 
                 ]
@@ -152,33 +153,16 @@
     )
     new Chart(contextografico_umidade2,
         {
-            type: 'line',
-            data: {
-                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-                datasets: [
-                    {
-                        label: 'Umidade',
-                        backgroundColor: '#D9C9BA',
-                        borderColor: '#D9C9BA',
-                        data: [60.2, 60.3, 62.9, 70.2, 72.7, 72.6]
-                    }
-
-                ]
-
-            }
-        }
-    )
-    new Chart(contextografico_temperatura3,
-        {
             type: 'bar',
             data: {
-                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                 datasets: [
                     {
-                        label: 'Temperatura',
-                        backgroundColor: '#D9C9BA',
+                        label: 'Desvio padrão umidade',
+                        backgroundColor: '#cc7626',
                         borderColor: '#D9C9BA',
-                        data: [25.9, 25.42, 26.39, 25.45, 26.32, 25.42]
+                        data: [4.113999854, 5.345391978, 0.545762219, 5.687613648, 1.292079449, 4.090910205, 2.539474001, 1.39601037, 3.895190343, 4.378038561, 2.155403635,5.924937881
+]
                     }
 
                 ]
@@ -186,39 +170,9 @@
             }
         }
     )
-    new Chart(contextografico_umidade3,
-        {
-            type: 'line',
-            data: {
-                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-                datasets: [
-                    {
-                        label: 'Umidade',
-                        backgroundColor: '#D9C9BA',
-                        borderColor: '#D9C9BA',
-                        data: [71, 71.1, 60.2, 61.5, 61.8, 60]
-                    }
-
-                ]
-
-            }
-        }
-    )
-
-
-
 </script>
 
 <script>
-    const Toast = Swal.mixin({
-        toast: true,
-        background: 'black',
-        color: 'white',
-        title: "Alerta!",
-        icon: 'warning',
-        toast: true,
-
-    });
 
     function mudarArmazem() {
         var armazem = select_armazem.value;
@@ -226,61 +180,13 @@
         var umidadeValue = 0;
 
         if (armazem == 1) {
-            graphic1.style = 'display: flex;';
-            graphic2.style = 'display: none';
-            graphic3.style = 'display: none';
-            umidadeValue = 60
-            temperaturaValue = 20;
-
+            
         }
         if (armazem == 2) {
-            graphic1.style = 'display: none;';
-            graphic2.style = 'display: flex';
-            graphic3.style = 'display: none';
-            temperaturaValue = 31
-            umidadeValue = 72.6
+            
         }
         if (armazem == 3) {
-            graphic1.style = 'display: none;';
-            graphic2.style = 'display: none';
-            graphic3.style = 'display: flex';
-            temperaturaValue = 25.42
-            umidadeValue = 60
-        }
-
-        umidade.innerHTML = `${umidadeValue}%`
-        temperatura.innerHTML = `${temperaturaValue}°C`
-
-        if (temperaturaValue > 30 && umidadeValue > 65) {
-            Toast.fire({
-                text: 'Temperatura e umidade elevadas!'
-            })
-        }
-        else if (temperaturaValue > 30) {
-            Toast.fire({
-                text: 'Temperatura elevada!'
-            })
-        }
-
-        else if (umidadeValue > 60) {
-            Toast.fire({
-                text: "Umidade elevada!"
-            })
-        }
-        else if (temperaturaValue < 15 && umidadeValue < 45) {
-            Toast.fire({
-                text: "Temperatura e umidade decaidas!"
-            })
-        }
-        else if (temperaturaValue < 15) {
-            Toast.fire({
-                text: "Temperatura Decaída!",
-            })
-        }
-        else if (umidadeValue < 45) {
-            Toast.fire({
-                text: "Umidade Decaída!",
-            })
+            
         }
     }
 
