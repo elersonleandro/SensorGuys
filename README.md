@@ -1,8 +1,6 @@
  
 </p>
-<h1 align="center">
-    <img alt="Banner VIEWCOFFE" title="#ViewCoffe" src="https://prnt.sc/G10vEaNL7Jpt" />
-</h1>
+
 
 <h4 align="center"> 
 	☕ View Coffe ☕
@@ -48,7 +46,6 @@ Projeto desenvolvido entre a primeira e segunda sprint do curso de SISTEMAS DE I
 O layout da aplicação está disponível no Figma:
 
 <a href="https://www.figma.com/file/ftyieZxb2JZDGb8z2h3bOI/View-Coffee?type=design&node-id=0-1&mode=design&t=fFHDpgRoDIkGgtxc-0">
-  <img alt="Figma" src="https://prnt.sc/c_LUwDouleNE">
 </a>
 
 ---
@@ -107,7 +104,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ## 📝 Licença
 
-Este projeto esta sobe a licença [MIT](./LICENSE).
+Este projeto esta sob a licença [MIT](./LICENSE).
 
 ---
 
