@@ -376,7 +376,7 @@
         var temperaturaJson = 0;
         function obterDados(grafico, endpoint) {
             var http = new XMLHttpRequest();
-            http.open('GET', 'http://localhost:3300/sensores/' + endpoint, false);
+            http.open('GET', 'http://10.18.32.154:3300/sensores/' + endpoint, false);
             http.send(null);
             var valores = JSON.parse(http.responseText);
             if (paginacao[endpoint] == null) {
