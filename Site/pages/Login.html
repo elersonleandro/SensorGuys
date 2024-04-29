@@ -113,42 +113,44 @@
             erro--
 
             if (erro <= 0) {
-            swal.fire({
-                title: "Tentativas excedidas!",
-                text: "Reinicie a página para tentar novamente",
-                icon: 'error',
-                toast: true,
-                background: '#402019 ',
-                color: 'white',    
+                swal.fire({
+                    title: "Tentativas excedidas!",
+                    text: "Reinicie a página para tentar novamente",
+                    icon: 'error',
+                    toast: true,
+                    background: '#402019 ',
+                    color: 'white',
                 })
-                
+
                 tentativas = 'false'
             }
         }
 
-        else if(tentativas == 'true'     && ((emailVar == email)&&(senhavar == senha)) ) {
+        else if (tentativas == 'true' && ((emailVar == email) && (senhavar == senha))) {
             swal.fire({
                 title: "Sucesso!",
                 text: "Login Realizado!",
                 icon: 'success',
                 toast: true,
+                showConfirmButton: false,
                 background: '#402019 ',
                 color: 'white'
             })
-            
+            setTimeout(() => {
+                window.location.replace('../pages/Dashboard.html')
+            }, 3000);
             erro = 4;
         }
 
-        else if(tentativas == 'false')
-        {
+        else if (tentativas == 'false') {
             swal.fire({
                 title: "Tentativas excedidas!",
                 text: "Reinicie a página para tentar novamente",
                 icon: 'error',
                 toast: true,
                 background: '#402019 ',
-                color: 'white',    
-                })
+                color: 'white',
+            })
         }
     }
 

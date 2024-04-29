@@ -53,7 +53,7 @@
                     <br>
                     <input type="password" id="input_repetirSenha" placeholder="Repetir Senha">
                     <br>
-                    <button onclick="cadastrar()">Cadastrar</button>
+                    <button onclick="cadastro()">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -61,36 +61,33 @@
 </body>
 
 </html>
-
-
-
-
 <script>
-    function cadastrar() {
-        var nomeVar = input_nome.value;
-        var emailVar = input_email.value;
-        var senhavar = input_senha.value;
-        var repSenhavar = input_repetirSenha.value;
-        var tipoVar = slc_tipo.value;
+   
         
 
+    function cadastro() {
         const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            background: '#D9C9BA ',
-            color: 'black',
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                background: '#D9C9BA ',
+                color: 'black',
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+        var emailVar = input_email.value
+        var senhaVar = input_senha.value;
+        var nomeVar = input_nome.value;
+        var repSenhavar = input_repetirSenha.value;
+        var tipoVar = slc_tipo.value;
         if (
             nomeVar == '' ||
             emailVar == '' ||
-            senhavar == '' ||
+            senhaVar == '' ||
             repSenhavar == '' ||
             tipoVar == '#'
         ) {
@@ -99,7 +96,8 @@
                 text: 'Todos os campos devem ser preenchidos!',
                 icon: 'error'
             }
-        )}
+            )
+        }
         else if (nomeVar.length <= 1) {
             Toast.fire({
                 title: 'Erro!',
@@ -116,16 +114,15 @@
             }
             );
         }
-        else if(senhavar.length <= 6)
-        {
+        else if (senhaVar.length <= 6) {
             Toast.fire({
                 title: 'Erro!',
-                text: 'A senha deve possuir mais de 6 caracteres',
-                icon: 'error'
+                text: 'A senha deVe possuir mais de 6 caracteres',
+                icon: 'erroV'
             }
             );
         }
-        else if (senhavar != repSenhavar) {
+        else if (senhaVar != repSenhavar) {
             Toast.fire({
                 title: 'Erro!',
                 text: 'As senhas não se coincidem!',
@@ -139,11 +136,14 @@
                 text: "Cadastro concluído!",
                 icon: 'success',
                 toast: true,
+                showConfirmButton: false,
                 background: '#402019 ',
                 color: 'white'
             })
+            setTimeout(() => {
+                window.location.replace('../pages/login.html')
+            }, 3000);
         }
-    
-        
     }
+
 </script>
