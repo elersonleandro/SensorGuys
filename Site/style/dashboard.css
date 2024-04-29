@@ -33,7 +33,7 @@ section
 {
     margin-top: 5%;
     background-color: #F1E3D6;
-    height: 75%;
+    height: 80vh;
     width: 75%;
     border-radius: 25px;
     padding: 0 60px; 
@@ -146,4 +146,9 @@ section
 {
     width: 15%;
     margin: 20px 0 0 20px;
+}
+
+.graficos{
+    height: 20vh;
+    width: 10vh;
 }
