@@ -38,18 +38,13 @@
         <div class="corpo_dentro">
             <div class="texto">
                 <p class="titulo_calculadora">
-                    Com base nas suas perdas<br>
-                    proteje seus ganhos
+                    Maximize seus Lucros: <br>
+                    Dados sobre suas Perdas e Ganhos.
                 </p>
                 <p class="descricao_calculadora">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Ut dapibus placerat lorem, sed tristique metus faucibus ut.
-                    Aenean ut consectetur ligula. Mauris ac felis a nisl iaculis egestas.
-                    Curabitur orci ligula, lobortis at commodo sed, hendrerit sit amet felis.
-                    Curabitur pellentesque mi mollis rhoncus congue. Mauris consequat, magna nec vehicula ultricies,
-                    Curabitur orci ligula, lobortis at commodo sed, hendrerit sit amet felis.
-                    Curabitur pellentesque mi mollis rhoncus congue. Mauris consequat, magna nec vehicula ultricies,
+                    Com base em pesquisas da Embrapa e da Organização Internacional do Café (ICO), Nossa calculadora oferece uma abordagem inteligente para cafeicultores preocupados em aprimorar seus resultados financeiros. Através da análise de dados de produção e perdas, ajudamos os agricultores a planejar seus lucros, ressaltando informações cruciais sobre seu desenvolvimento cafeeiro.
                 </p>
+                
             </div>
             <div class="caixa1">
                 <h2>Calculadora Financeira</h2>
@@ -115,61 +110,55 @@
     }
 
     function calcular() {
-        var tipo = select_cafe.value;
-        var saca = Number(input_saca.value);
-        var perda = Number(input_perda.value);
-        var porcentagem = 100 * perda / saca;
-        var salvar = perda * 0.2;
+    var tipo = select_cafe.value;
+    var saca = Number(input_saca.value);
+    var perda = Number(input_perda.value);
+    var porcentagem = (100 * perda / saca).toFixed(2); // Arredonda para duas casas decimais
+    var salvar = (perda * 0.2).toFixed(2); // Arredonda para duas casas decimais
 
-        var fatAra = saca * 942.08;
-        var fatRob = saca * 697.05;
+    var sacaRestante = saca - perda; // Quantidade de sacas restantes após as perdas
+    var fatAra = (sacaRestante * 942.08).toFixed(2); // Arredonda para duas casas decimais
+    var fatRob = (sacaRestante * 697.05).toFixed(2); // Arredonda para duas casas decimais
 
-        var kg = saca * 60;
+    var kg = saca * 60;
 
-        if (saca == "" || tipo == "" || perda == "") {
-            msg.innerHTML = "Preencha todos os campos!";
-            document.getElementById("span_resposta").style.color = "red";
+    if (saca == "" || tipo == "" || perda == "") {
+        msg.innerHTML = "Preencha todos os campos!";
+        document.getElementById("span_resposta").style.color = "red";
+    } else {
+        if (tipo == "arabica") {
+            span_resposta.innerHTML = `Olá, obrigado por consultar <b> View Coffee </b> <br><br>
+            Percebemos com base nos dados informados que você faturou cerca de R$${fatAra} reais em 2023 (preço médio de dez/2023) <br> <br>
+            Com uma produção aproximada de ${kg} kilos <br><br>
+            Percebemos que sua perda foi de ${porcentagem}% <br><br>
+            Com base na última safra, poderíamos salvar aproximadamente: R$${(salvar * 942.08).toFixed(2)} ou ${salvar} sacas<br><br>
+            Com faturamento possível na próxima safra de: <strong>R$${((sacaRestante * 942.08) + (salvar * 942.08)).toFixed(2)}</strong> <br><br>`;
+            modal.classList.add('active');
         } else {
-
-            if (tipo == "arabica") {
-
+            if (tipo == "robusta") {
                 span_resposta.innerHTML = `Olá, obrigado por consultar <b> View Coffee </b> <br><br>
-                Percebemos com base nos dados informados que você faturou aproximadamente R$${fatAra} reais em 2023 (preço médio de dez/2023) <br> <br>
-                Com uma produção de aproximadamnte de ${kg} kilos <br><br>
+                Percebemos com base nos dados informados que você faturou cerca de R$${fatRob} reais em 2023 (preço médio de dez/2023) <br> <br>
+                Com uma produção aproximada de ${kg} kilos <br><br>
                 Percebemos que sua perda foi de ${porcentagem}% <br><br>
-                Com base na ultima safra, poderíamos salvar: R$${salvar * 942.08} ou ${salvar} sacas<br><br>
-                Com faturamento possivel na proxima safra de: <strong>R$${(saca * 942.08) + (salvar * 942.08)}</strong> <br><br>`;
+                Com base na última safra, poderíamos salvar aproximadamente: R$${(salvar * 697.05).toFixed(2)} ou ${salvar} sacas<br><br>
+                Com faturamento possível na próxima safra de: <strong> R$${((sacaRestante * 697.05) + (salvar * 697.05)).toFixed(2)} </strong>`;
                 modal.classList.add('active');
-
-
             } else {
-
-                if (tipo == "robusta") {
-                    span_resposta.innerHTML = `Olá, obrigado por consultar <b> View Coffee </b> <br><br>
-                Percebemos com base nos dados informados que você faturou aproximadamente R$${fatRob} reais em 2023 (preço médio de dez/2023) <br> <br>
-                Com uma produção de aproximadamnte de ${kg} kilos <br><br>
-                Percebemos que sua perda foi de ${porcentagem}% <br><br>
-                Com base na ultima safra, poderíamos salvar: R$${salvar * 697.05} ou ${salvar} sacas<br><br>
-                Com faturamento possivel na proxima safra de: <strong> R$${(saca * 697.05) + (salvar * 697.05)} </strong>`;
+                span_resposta.innerHTML = "Tipo de grão não encontrado, verifique o preenchimento do campo!";
                 modal.classList.add('active');
-
-                } else {
-                    span_resposta.innerHTML = "Tipo de grão não encontrado, verifique o preenchimento do campo!";
-                    modal.classList.add('active');
-                }
             }
-
         }
-
-
     }
+}
+
+
 
     /*
     
     preço arabica: 996,52
     preço robusta: 845,75
     
-    amarzenamento das sacas de café: base de 4 por 2, com uma altura de 18 a 25 sacos
+    armazenamento das sacas de café: base de 4 por 2, com uma altura de 18 a 25 sacos
     
     uma saca de café cru da 45 de torrado
     

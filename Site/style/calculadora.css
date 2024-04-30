@@ -192,7 +192,7 @@
 .texto {
   font-size: 16px;
   margin-left: 40px;
-  text-align: justify;
+  text-align: center;
   font-family: inter;
 }
 
@@ -201,6 +201,7 @@
   width: 400px;
   font-family: inter;
   font-size: 20px;
+
 }
 
 .titulo_calculadora {

@@ -92,10 +92,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
 -   Protótipo:  **[Figma](https://www.figma.com/)**  →  **[Protótipo (ViewCoffe)](https://www.figma.com/file/ftyieZxb2JZDGb8z2h3bOI/View-Coffee?type=design&node-id=0-1&mode=design&t=fFHDpgRoDIkGgtxc-0)**
 -   API:  **[DAT-ACQU-INO](https://github.com/BandTec/dat-acqu-ino)**
 -   API:  **[WEB-DATA-VIZ](https://github.com/BandTec/web-data-viz)**
--   Maps:  **[Leaflet](https://react-leaflet.js.org/en/)**
 -   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)**
--   Ícones:  **[Feather Icons](https://feathericons.com/)**,  **[Font Awesome](https://fontawesome.com/)**
--   Fontes:  **[Ubuntu](https://fonts.google.com/specimen/Ubuntu)**,  **[Roboto](https://fonts.google.com/specimen/Roboto)**
+-   Ícones:  **[Flaticon](https://www.flaticon.com/br/)**,  **[Google Fonts](https://fonts.google.com/)**
+-   Fontes:  **[Sofia-Sans](https://fonts.google.com/specimen/Sofia+Sans?query=sofia)**,  **[Inter](https://fonts.google.com/specimen/Inter?query=inter)**
 
 
 ---
