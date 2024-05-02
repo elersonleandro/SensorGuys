@@ -25,5 +25,5 @@ temperatura = (float(analogRead(LM35))*5/(1023))/0.01;
   Serial.println(umidade);
   
 
-delay(2000);
+delay(6000);
 }

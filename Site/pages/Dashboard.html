@@ -150,8 +150,8 @@
                 datasets: [{
                     label: 'Temperatura',
                     type: 'line',
-                    borderColor: ['#f76d02'],
-                    backgroundColor: ['#f76d02']
+                    borderColor: ['#08241c'],
+                    backgroundColor: ['#08241c']
                 }]
             },
             options: {
@@ -188,8 +188,8 @@
                 datasets: [{
                     label: 'Umidade',
                     type: 'line',
-                    borderColor: ['#f76d02'],
-                    backgroundColor: ['#f76d02']
+                    borderColor: ['#08241c'],
+                    backgroundColor: ['#08241c']
                 }]
             },
             options: {
@@ -226,8 +226,8 @@
                 datasets: [
                     {
                         label: 'Temperatura',
-                        backgroundColor: '#f76d02',
-                        borderColor: '#f76d02',
+                        backgroundColor: '#08241c',
+                        borderColor: '#08241c',
                         data: [25.42, 25.42, 26.39, 27.37, 28.84, 27.86]
                     }
 
@@ -244,8 +244,8 @@
                 datasets: [
                     {
                         label: 'Umidade',
-                        backgroundColor: '#f76d02',
-                        borderColor: '#f76d02',
+                        backgroundColor: '#08241c',
+                        borderColor: '#08241c',
                         data: [54, 56, 52, 53, 55, 57]
                     }
 
@@ -262,8 +262,8 @@
                 datasets: [
                     {
                         label: 'Temperatura',
-                        backgroundColor: '#f76d02',
-                        borderColor: '#f76d02',
+                        backgroundColor: '#08241c',
+                        borderColor: '#08241c',
                         data: [25.9, 25.42, 26.39, 25.45, 26.32, 25.42]
                     }
 
@@ -280,8 +280,8 @@
                 datasets: [
                     {
                         label: 'Umidade',
-                        backgroundColor: '#f76d02',
-                        borderColor: '#f76d02',
+                        backgroundColor: '#08241c',
+                        borderColor: '#08241c',
                         data: [71, 71.1, 60.2, 61.5, 61.8, 60]
                     }
 
@@ -298,15 +298,7 @@
 <script>
     mudarArmazem();
 
-    const Toast = Swal.mixin({
-        toast: true,
-        background: 'black',
-        color: 'white',
-        title: "Alerta!",
-        icon: 'warning',
-        toast: true,
-
-    });
+    
 
     function mudarArmazem() {
         var armazem = select_armazem.value;
@@ -338,42 +330,20 @@
         // umidade.innerHTML = `${umidadeValue}%`
         // temperatura.innerHTML = `${temperaturaValue}°C`
 
-        if (temperaturaJson >= 11 && umidadeJson > 67) {
-            Toast.fire({
-                text: 'Temperatura e umidade elevadas!'
-            })
-        }
-        else if (temperaturaJson >= 11) {
-            Toast.fire({
-                text: 'Temperatura elevada!'
-            })
-        }
 
-        else if (umidadeJson > 67) {
-            Toast.fire({
-                text: "Umidade elevada!"
-            })
-        }
-        else if (temperaturaJson < 9 && umidadeJson < 52) {
-            Toast.fire({
-                text: "Temperatura e umidade decaidas!"
-            })
-        }
-        else if (temperaturaJson < 9) {
-            Toast.fire({
-                text: "Temperatura Decaída!",
-            })
-        }
-        else if (umidadeJson < 52) {
-            Toast.fire({
-                text: "Umidade Decaída!",
-            })
-        }
     }
 
-
-
-
+    const Toast = Swal.mixin({
+        toast: true,
+            position: "top",
+            timer: 5000,
+            timerProgressBar: true,
+            background: '#D9C9BA ',
+            color: 'black',
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+    }});
 
     var paginacao = {};
     var tempo = {};
@@ -381,42 +351,77 @@
     var umidadeJson = 0;
     var temperaturaJson = 0;
     function obterDados(grafico, endpoint) {
-            var http = new XMLHttpRequest();
-            http.open('GET', 'http://localhost:3300/sensores/' + endpoint, false);
-            http.send(null);
-            var valores = JSON.parse(http.responseText);
-            if (paginacao[endpoint] == null) {
-                paginacao[endpoint] = 0;
-            }
-            if (tempo[endpoint] == null) {
-                tempo[endpoint] = 0;
-            }
-            // Exibir à partir do último elemento exibido anteriormente
-            var ultimaPaginacao = paginacao[endpoint];
-            paginacao[endpoint] = valores.length;
-            var valores = valores.slice(ultimaPaginacao);
-            valores.forEach((valor) => {
-                //Máximo de 60 itens exibidos no gráfico
-                if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                    grafico.data.labels.shift();
-                    grafico.data.datasets[0].data.shift();
-                }
 
-                valorJson.push(valor);
-                temperaturaJson = valorJson[valorJson.length - 1];
-                umidadeJson = valorJson[valorJson.length - 2];
-                grafico.data.labels.push(tempo[endpoint]++);
-                grafico.data.datasets[0].data.push(parseFloat(valor));
-                grafico.update();
-                umidade.innerHTML = `${umidadeJson}%`;
-                temperatura.innerHTML = `${temperaturaJson}°C`
-            })
+        
+        var http = new XMLHttpRequest();
+        http.open('GET', 'http://10.18.32.154:3300/sensores/' + endpoint, false);
+        http.send(null);
+        var valores = JSON.parse(http.responseText);
+        if (paginacao[endpoint] == null) {
+            paginacao[endpoint] = 0;
         }
+        if (tempo[endpoint] == null) {
+            tempo[endpoint] = 0;
+        }
+        // Exibir à partir do último elemento exibido anteriormente
+        var ultimaPaginacao = paginacao[endpoint];
+        paginacao[endpoint] = valores.length;
+        var valores = valores.slice(ultimaPaginacao);
+        valores.forEach((valor) => {
+            //Máximo de 60 itens exibidos no gráfico
+            if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                grafico.data.labels.shift();
+                grafico.data.datasets[0].data.shift();
+            }
 
-        setInterval(() => {
-            obterDados(dht11Umidade, 'dht11/umidade');
-            obterDados(lm35Temperatura, 'lm35/temperatura');
-        }, 1000);
+            valorJson.push(valor);
+            temperaturaJson = valorJson[valorJson.length - 1];
+            umidadeJson = valorJson[valorJson.length - 2];
+            grafico.data.labels.push(tempo[endpoint]++);
+            grafico.data.datasets[0].data.push(parseFloat(valor));
+            grafico.update();
+
+            umidade.innerHTML = `${umidadeJson}%`;
+            temperatura.innerHTML = `${temperaturaJson}°C`
+
+            if (temperaturaJson >= 11 && umidadeJson > 67) {
+                Toast.fire({
+                    text: 'Temperatura e umidade elevadas!'
+                })
+            }
+            else if (temperaturaJson >= 11) {
+                Toast.fire({
+                    text: 'Temperatura elevada!'
+                })
+            }
+
+            else if (umidadeJson > 67) {
+                Toast.fire({
+                    text: "Umidade elevada!"
+                })
+            }
+            else if (temperaturaJson < 10 && umidadeJson < 52) {
+                Toast.fire({
+                    text: "Temperatura e umidade decaidas!"
+                })
+            }
+            else if (temperaturaJson < 10) {
+                Toast.fire({
+                    text: "Temperatura Decaída!",
+                })
+            }
+            else if (umidadeJson < 52) {
+                Toast.fire({
+                    text: "Umidade Decaída!",
+                })
+            }
+        })
+    }
+
+    setInterval(() => {
+        obterDados(dht11Umidade, 'dht11/umidade');
+        obterDados(lm35Temperatura, 'lm35/temperatura');
+    }, 1000);
 
 
 
