@@ -90,7 +90,7 @@ section
     margin: 0;
     width: 25%;
     height: 100%;
-    font-size: 22px;
+    font-size: 25px;
 
 }
 
@@ -113,7 +113,7 @@ section
     text-align: center;
     width: fit-content;
     font-family: sofia-bold;
-    font-size: 20px;
+    font-size: 25px;
     margin: 0 25px;
 }
 
@@ -151,9 +151,4 @@ section
 .graficos{
     height: 20vh;
     width: 10vh;
-}
-
-.swal2.icon.swal2-warning{
-    color: #cc1010;
-    border-color:#cc1010;
 }
