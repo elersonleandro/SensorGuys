@@ -53,8 +53,8 @@
                             <div id="temperatura"></div>
                         </div>
                         <div class="dado_card">
-                            <span>Recomendado</span>
-                            <span>20°C</span>
+                            <span>Faixa Recomendada</span>
+                            <span>10 - 11°C</span>
                         </div>
                     </div>
 
@@ -71,8 +71,8 @@
                             <div id="umidade"></div>
                         </div>
                         <div class="dado_card">
-                            <span>Recomendado</span>
-                            <span>60%</span>
+                            <span>Faixa Recomendada</span>
+                            <span>52 - 67%</span>
                         </div>
                     </div>
 
@@ -132,7 +132,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
 
-
 <script>
 
     const contextoLm35Temperatura1 = document.getElementById('grafico_temperatura1').getContext('2d');
@@ -153,8 +152,10 @@
                     borderColor: ['#08241c'],
                     backgroundColor: ['#08241c']
                 }]
+
             },
             options: {
+
                 scales: {
                     xAxes: [{
                         distribution: 'series',
@@ -176,6 +177,7 @@
                     duration: 0
                 }
             }
+            
         }
     );
 
@@ -232,7 +234,20 @@
                     }
 
                 ]
-
+            },
+            options: {
+                plugins: {
+                    annotation: 
+                    {
+                        annotations:{
+                            line1: {
+                                type: 'line',
+                                yMax: 11,
+                                yMin: 10,
+                            }
+                        }
+                    } 
+                },
             }
         }
     )
@@ -250,7 +265,6 @@
                     }
 
                 ]
-
             }
         }
     )
@@ -334,12 +348,16 @@
     }
 
     const Toast = Swal.mixin({
-        toast: true,
+            icon: 'warning',
+            toast: true,
             position: "top",
             timer: 5000,
             timerProgressBar: true,
             background: '#D9C9BA ',
-            color: 'black',
+            color: 'white',
+            background:'black',
+            showCloseButton: true,
+            showConfirmButton: false,
             didOpen: (toast) => {
                 toast.onmouseenter = Swal.stopTimer;
                 toast.onmouseleave = Swal.resumeTimer;
