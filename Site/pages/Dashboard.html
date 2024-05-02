@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../style/header.css">
     <link rel="stylesheet" href="../style/dashboard.css">
     <link rel="stylesheet" href="../style/footer.css">
+    <link rel="shortcut icon" href="../img/logo_image.png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -230,8 +231,10 @@
                         borderColor: '#08241c',
                         data: [25.42, 25.42, 26.39, 27.37, 28.84, 27.86]
                     }
+                    
 
                 ]
+                
 
             }
         }
@@ -421,7 +424,7 @@
     setInterval(() => {
         obterDados(dht11Umidade, 'dht11/umidade');
         obterDados(lm35Temperatura, 'lm35/temperatura');
-    }, 1000);
+    }, 9000);
 
 
 

@@ -152,3 +152,8 @@ section
     height: 20vh;
     width: 10vh;
 }
+
+.swal2.icon.swal2-warning{
+    color: #cc1010;
+    border-color:#cc1010;
+}
