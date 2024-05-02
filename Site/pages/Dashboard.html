@@ -20,7 +20,7 @@
             <nav class="navbar">
                 <div class="header_center">
                     <ul>
-                        <li><a href="DashboardMacro.html">Métricas</a></li>
+                        <li><a href="DashboardMacro.html">Análise</a></li>
                         <li><a href="GerenciarFunc.html">Gerenciar Funcionários</a></li>
                     </ul>
                 </div>
@@ -64,7 +64,7 @@
                     <div id="umidade_card">
                         <h1>Umidade</h1>
                     </div>
-                    
+
                     <div class="card_content">
                         <div class="dado_card">
                             <span>Atual</span>
@@ -141,81 +141,81 @@
     const contextografico_umidade2 = document.getElementById('grafico_umidade2');
     const contextografico_temperatura3 = document.getElementById('grafico_temperatura3');
     const contextografico_umidade3 = document.getElementById('grafico_umidade3');
-    
+
     var lm35Temperatura = new Chart(
-            contextoLm35Temperatura1,
-            {
-                type: 'line',
-                data: {
-                    datasets: [{
-                        label: 'Temperatura',
-                        type: 'line',
-                        borderColor: ['#f76d02'],
-                        backgroundColor: ['#f76d02']
+        contextoLm35Temperatura1,
+        {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Temperatura',
+                    type: 'line',
+                    borderColor: ['#f76d02'],
+                    backgroundColor: ['#f76d02']
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Temperatura'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
                     }]
                 },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            distribution: 'series',
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Temperatura'
-                            },
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    },
-                    animation: {
-                        duration: 0
-                    }
+                animation: {
+                    duration: 0
                 }
             }
-        );
+        }
+    );
 
 
-        var dht11Umidade = new Chart(
-            contextoDht11Umidade1,
-            {
-                type: 'line',
-                data: {
-                    datasets: [{
-                        label: 'Umidade',
-                        type: 'line',
-                        borderColor: ['#f76d02'],
-                        backgroundColor: ['#f76d02']
+    var dht11Umidade = new Chart(
+        contextoDht11Umidade1,
+        {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Umidade',
+                    type: 'line',
+                    borderColor: ['#f76d02'],
+                    backgroundColor: ['#f76d02']
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Umidade'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
                     }]
                 },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            distribution: 'series',
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Umidade'
-                            },
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    },
-                    animation: {
-                        duration: 0
-                    }
+                animation: {
+                    duration: 0
                 }
             }
-        );
+        }
+    );
 
 
     new Chart(contextografico_temperatura2,
@@ -305,14 +305,13 @@
         title: "Alerta!",
         icon: 'warning',
         toast: true,
-                
+
     });
 
     function mudarArmazem() {
         var armazem = select_armazem.value;
-       
-        if(armazem == 1)
-        {
+
+        if (armazem == 1) {
             graphic1.style = 'display: flex;';
             graphic2.style = 'display: none';
             graphic3.style = 'display: none';
@@ -336,43 +335,39 @@
             temperatura.innerHTML = `25.2°C`
         }
 
-            // umidade.innerHTML = `${umidadeValue}%`
-            // temperatura.innerHTML = `${temperaturaValue}°C`
+        // umidade.innerHTML = `${umidadeValue}%`
+        // temperatura.innerHTML = `${temperaturaValue}°C`
 
-        if(temperaturaJson > 30 && umidadeJson > 65)
-        {
+        if (temperaturaJson >= 11 && umidadeJson > 67) {
             Toast.fire({
                 text: 'Temperatura e umidade elevadas!'
             })
         }
-        else if (temperaturaJson > 30) {
+        else if (temperaturaJson >= 11) {
             Toast.fire({
                 text: 'Temperatura elevada!'
             })
         }
 
-        else if (umidadeJson > 60)
-        {
+        else if (umidadeJson > 67) {
             Toast.fire({
                 text: "Umidade elevada!"
-            })  
+            })
         }
-        else if (temperaturaJson < 15 && umidadeJson < 45)
-        {
+        else if (temperaturaJson < 9 && umidadeJson < 52) {
             Toast.fire({
                 text: "Temperatura e umidade decaidas!"
-            })  
+            })
         }
-        else if(temperaturaJson < 15){
+        else if (temperaturaJson < 9) {
             Toast.fire({
                 text: "Temperatura Decaída!",
-            })  
+            })
         }
-        else if(umidadeJson < 45)
-        {
+        else if (umidadeJson < 52) {
             Toast.fire({
                 text: "Umidade Decaída!",
-            }) 
+            })
         }
     }
 
@@ -380,35 +375,44 @@
 
 
 
-         var paginacao = {};
-         var tempo = {};
-         var valorJson = [];
-         var umidadeJson = 0;
-         var temperaturaJson = 0;
-         function obterDados(grafico, endpoint) {
-             var http = new XMLHttpRequest();
-             http.open('GET', 'http://localhost:3300/sensores/' + endpoint, false);
-             http.send(null);
-             var valores = JSON.parse(http.responseText);
-             if (paginacao[endpoint] == null) {
-                 paginacao[endpoint] = 0;
-             }
-             if (tempo[endpoint] == null) {
-                 tempo[endpoint] = 0;
-             }
-             // Exibir à partir do último elemento exibido anteriormente
-             var ultimaPaginacao = paginacao[endpoint];
-             paginacao[endpoint] = valores.length;
-             var valores = valores.slice(ultimaPaginacao);
-             valores.forEach((valor) => {
-                 //Máximo de 60 itens exibidos no gráfico
-                 if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                     grafico.data.labels.shift();
-                     grafico.data.datasets[0].data.shift();
-                 }
-                })
+    var paginacao = {};
+    var tempo = {};
+    var valorJson = [];
+    var umidadeJson = 0;
+    var temperaturaJson = 0;
+    function obterDados(grafico, endpoint) {
+        var http = new XMLHttpRequest();
+        http.open('GET', 'http://localhost:3300/sensores/' + endpoint, false);
+        http.send(null);
+        var valores = JSON.parse(http.responseText);
+        if (paginacao[endpoint] == null) {
+            paginacao[endpoint] = 0;
+        }
+        if (tempo[endpoint] == null) {
+            tempo[endpoint] = 0;
+        }
+        // Exibir à partir do último elemento exibido anteriormente
+        var ultimaPaginacao = paginacao[endpoint];
+        paginacao[endpoint] = valores.length;
+        var valores = valores.slice(ultimaPaginacao);
+        valores.forEach((valor) => {
+            //Máximo de 60 itens exibidos no gráfico
+            if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                grafico.data.labels.shift();
+                grafico.data.datasets[0].data.shift();
             }
 
-        
+            grafico.data.labels.push(tempo[endpoint]++);
+            grafico.data.datasets[0].data.push(parseFloat(valor));
+            grafico.update()
+        })
+
+        setInterval(() => {
+            obterDados(dht11Umidade, 'dht11/umidade');
+            obterDados(lm35Temperatura, 'lm35/temperatura');
+        }, 1000);
+    }
+
+
 
 </script>
