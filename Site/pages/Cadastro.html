@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../style/header.css">
     <link rel="stylesheet" href="../style/cadastro-login.css">
     <link rel="shortcut icon" href="../img/logo_image.png">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../style/alerta_erro.css">
+    
 </head>
 
 <body>
@@ -31,14 +32,21 @@
                     </ul>
             </nav>
         </div>
-        </div>
-    </header>
-    <section>
-        <div class="content">
+    </div>
+</header>
+<section>
+    <div class="content">
+        
+        <div class="card">
+            
+            <div class="content_card">
+<!--                 Adicionado um alerta
+                    <div id="div_erros">
+                        <div id="alerta_erro">
 
-            <div class="card">
-
-                <div class="content_card">
+                            <div class="card_erro"></div>
+                        </div>
+                    </div> -->
                     <h1>Cadastro Funcionário</h1>
                     <p>Insira as informações do funcionário para realizar o cadastro</p>
                     <select id="slc_tipo">
@@ -92,55 +100,22 @@
             repSenhavar == '' ||
             tipoVar == '#'
         ) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'Todos os campos devem ser preenchidos!',
-                icon: 'error'
-            }
-            )
+         //alert   
         }
         else if (nomeVar.length <= 1) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'O nome deve possuir mais de um caractere!',
-                icon: 'error'
-            }
-            );
+            // alert
         }
         else if (emailVar.indexOf('@') < 0) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'Insira um email valido!',
-                icon: 'error'
-            }
-            );
+            //alert
         }
         else if (senhaVar.length <= 6) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'A senha deVe possuir mais de 6 caracteres',
-                icon: 'erroV'
-            }
-            );
+            //alert
         }
         else if (senhaVar != repSenhavar) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'As senhas não se coincidem!',
-                icon: 'error'
-            }
-            );
+            //alert;
         }
         else {
-            swal.fire({
-                title: "Sucesso!",
-                text: "Cadastro concluído!",
-                icon: 'success',
-                toast: true,
-                showConfirmButton: false,
-                background: '#402019 ',
-                color: 'white'
-            })
+            // alert
             setTimeout(() => {
                 window.location.replace('../pages/login.html')
             }, 3000);
