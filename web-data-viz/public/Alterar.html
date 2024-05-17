@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização de Funcionário</title>
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/Alterar.css">
+    <link rel="shortcut icon" href="./assets/img/logo_image.png">
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="header_left">
+                <a href="./index.html"><img src="./assets/img/logo_image.png" alt="logo do projeto"></a>
+            </div>
+            <nav class="navbar">
+                <div class="header_center">
+                    <ul>
+                        <li><a href="DashboardMacro.html">Análise</a></li>
+                        <li><a href="Dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="header_right">
+                    <ul>
+                        <img src="./assets/img/headerLinha.png" alt="">
+                        <li><a href="./index.html">Página Inicial</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="content">
+
+            <div class="card">
+
+                <div class="content_card">
+                    <h1>Atualização do Funcionário</h1>
+                    <p>Edição das informações do funcionário</p>
+                    <select id="slc_tipo">
+                        <option disabled selected value="#">Selecione o tipo</option>
+                        <option value="Gerente">Gerente</option>
+                        <option value="Analista">Analista</option>
+                    </select>
+                    <input type="text" id="input_nome" placeholder="Nome">
+                    <br>
+                    <input type="text" id="input_email" placeholder="Email">
+                    <br>
+                    <input type="password" id="input_senha" placeholder="Senha">
+                    <br>
+                    <div class="botoes">
+                    <button onclick="atualizar()">Atualizar</button>
+                    <button id="desativar" onclick="desativar()">Desativar Funcionário</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+<script>
+   
+        
+
+    function atualizar() {
+        const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                background: '#D9C9BA ',
+                color: 'black',
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+        var emailVar = input_email.value
+        var senhaVar = input_senha.value;
+        var nomeVar = input_nome.value;
+        var repSenhavar = input_repetirSenha.value;
+        var tipoVar = slc_tipo.value;
+        if (
+            nomeVar == '' ||
+            emailVar == '' ||
+            senhaVar == '' ||
+            repSenhavar == '' ||
+            tipoVar == '#'
+        ) {
+            Toast.fire({
+                title: 'Erro!',
+                text: 'Todos os campos devem ser preenchidos!',
+                icon: 'error'
+            }
+            )
+        }
+        else if (nomeVar.length <= 1) {
+            Toast.fire({
+                title: 'Erro!',
+                text: 'O nome deve possuir mais de um caracter!',
+                icon: 'error'
+            }
+            );
+        }
+        else if (emailVar.indexOf('@') < 0) {
+            Toast.fire({
+                title: 'Erro!',
+                text: 'Insira um email valido!',
+                icon: 'error'
+            }
+            );
+        }
+        else if (senhaVar.length <= 6) {
+            Toast.fire({
+                title: 'Erro!',
+                text: 'A senha deve possuir mais de 6 caracteres',
+                icon: 'erroV'
+            }
+            );
+        }
+        else if (senhaVar != repSenhavar) {
+            Toast.fire({
+                title: 'Erro!',
+                text: 'As senhas não se coincidem!',
+                icon: 'error'
+            }
+            );
+        }
+        else {
+            swal.fire({
+                title: "Sucesso!",
+                text: "Cadastro concluído!",
+                icon: 'success',
+                toast: true,
+                showConfirmButton: false,
+                background: '#402019 ',
+                color: 'white'
+            })
+            setTimeout(() => {
+                window.location.replace('../pages/login.html')
+            }, 3000);
+        }
+    }
+
+</script>

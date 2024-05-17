@@ -39,7 +39,7 @@ body::-webkit-scrollbar-thumb
 }
 .content
 {
-    background-image: url(../img/image\ 4.png);
+    background-image: url(../assets/img/image\ 4.png);
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -298,7 +298,7 @@ body::-webkit-scrollbar-thumb
 {
     display: flex;
     flex-direction: column;
-    background-image: url(../img/background_section3.png);
+    background-image: url(../assets/img/background_section3.png);
     background-size: 100%;
     background-repeat: no-repeat;
     height: 100vh;
