@@ -1,19 +1,40 @@
-#div_erros {
+#div_erro {
     display: block;
-    width: 100px;
-    height: 100px;
+     width: 200px;
+    height: auto;
+    background-color: #ffffff;
+    /*justify-content: flex-end;
+    display: flex;
+    top: 0%; */
+    position: absolute;
+        top: 15%;
+        right: 0;
+        background-color: #f0f0f0;
+        padding: 5px; 
+        border-radius: 10px;
+    border: #e6005a 3px solid;
+    margin-top: 1%;
+    overflow-wrap: break-word;
+    font-weight: 500px;
+    font-size: 19px;
   }
   
-  /* FORMULARIO */
+  #card_erro #mensagem_erro{
+    
+    
+  }
+  /* FORMULARIO 
+  
   
   .alerta_erro{
     display: flex;
     justify-content: flex-end;
+    position: absolute;
   }
   
   .card_erro {
     display: none;
-    background-color: #fff;
+    background-color: #000000;
     color: black;
     width: 230px;
     position: fixed;
@@ -22,9 +43,5 @@
     padding: 10px;
     margin-right: 10%;
   }
-  
-  .card_erro #mensagem_erro{
-    font-weight: 500;
-    font-size: 20px;
-  }
+  */
   
