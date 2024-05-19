@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div id="div_erro">
-                <div id="mensagem_erro">Lruibfiseufhuenfjwneifnhweuifnuinefuiwenfunefhiorem ipsum dolor sit amet, consectetur adipisicing elit.</div> 
+                <div id="mensagem_erro"></div> 
             </div> 
         </div>
     </section>
@@ -89,57 +89,41 @@
             emailVar == '' &&
             senhavar == ''
         ) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'Insira email e senha para fazer o login',
-                icon: 'error'
-            }
-            )
+            div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Erro!</b><br>
+           Todos os campos devem ser preenchidos!`
+            
         }
         else if (emailVar != email) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'Este usuário não existe',
-                icon: 'error'
-            }
-            );
+            div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Erro!</b><br>
+           Este usuário não existe!`
+            
         }
         else if ((emailVar == email) && (senhavar != senha)) {
-            swal.fire({
-                title: 'Erro!',
-                text: 'Senha inválida',
-                icon: 'error',
-                toast: true,
-                background: '#402019 ',
-                color: 'white'
-            }
-            );
+            div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Erro!</b><br>
+           Senha inválida!`
+            
             erro--
 
             if (erro <= 0) {
-                swal.fire({
-                    title: "Tentativas excedidas!",
-                    text: "Reinicie a página para tentar novamente",
-                    icon: 'error',
-                    toast: true,
-                    background: '#402019 ',
-                    color: 'white',
-                })
+                div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Tentativas excedidas!</b><br>
+            Reinicie a página para tentar novamente!`
+            
 
                 tentativas = 'false'
             }
         }
 
         else if (tentativas == 'true' && ((emailVar == email) && (senhavar == senha))) {
-            swal.fire({
-                title: "Sucesso!",
-                text: "Login Realizado!",
-                icon: 'success',
-                toast: true,
-                showConfirmButton: false,
-                background: '#402019 ',
-                color: 'white'
-            })
+            
+                div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Sucesso!</b><br>
+           Login realizado!`
+            
+            
             setTimeout(() => {
                 window.location.replace('../pages/Dashboard.html')
             }, 3000);
@@ -147,14 +131,10 @@
         }
 
         else if (tentativas == 'false') {
-            swal.fire({
-                title: "Tentativas excedidas!",
-                text: "Reinicie a página para tentar novamente",
-                icon: 'error',
-                toast: true,
-                background: '#402019 ',
-                color: 'white',
-            })
+             div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Tentativas Excedidas!</h2><br><br>
+           Tente novamente mais tarde!`
+            
         }
     }
 

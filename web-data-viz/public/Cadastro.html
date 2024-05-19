@@ -57,7 +57,7 @@
                     <button onclick="cadastro()">Cadastrar</button>
                 </div>
                 <div id="div_erro">
-                    <div id="mensagem_erro">Lruibfiseufhuenfjwneifnhweuifnuinefuiwenfunefhiorem ipsum dolor sit amet, consectetur adipisicing elit.</div> 
+                    <div id="mensagem_erro"></div> 
                 </div>  
         
             </div>
@@ -71,19 +71,19 @@
         
 
     function cadastro() {
-        const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                background: '#D9C9BA ',
-                color: 'black',
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
+        // const Toast = Swal.mixin({
+        //         toast: true,
+        //         position: "top-end",
+        //         showConfirmButton: false,
+        //         timer: 3000,
+        //         timerProgressBar: true,
+        //         background: '#D9C9BA ',
+        //         color: 'black',
+        //         didOpen: (toast) => {
+        //             toast.onmouseenter = Swal.stopTimer;
+        //             toast.onmouseleave = Swal.resumeTimer;
+        //         }
+          //  });
         var emailVar = input_email.value
         var senhaVar = input_senha.value;
         var nomeVar = input_nome.value;
@@ -96,55 +96,35 @@
             repSenhavar == '' ||
             tipoVar == '#'
         ) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'Todos os campos devem ser preenchidos!',
-                icon: 'error'
-            }
-            )
+            div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Erro!</b><br>
+           Todos os campos devem ser preenchidos!`
+            
         }
         else if (nomeVar.length <= 1) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'O nome deve possuir mais de um caractere!',
-                icon: 'error'
-            }
-            );
+            div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Erro!</b><br>
+           O nome deve possuir mais de um caractere!`
         }
         else if (emailVar.indexOf('@') < 0) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'Insira um email valido!',
-                icon: 'error'
-            }
-            );
+             div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Erro!</b><br>
+           Insira um email válido!`
         }
         else if (senhaVar.length <= 6) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'A senha deVe possuir mais de 6 caracteres',
-                icon: 'erroV'
-            }
-            );
+            div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Erro!</b><br>
+           A senha deve possuir mais de seis caracteres!`
         }
         else if (senhaVar != repSenhavar) {
-            Toast.fire({
-                title: 'Erro!',
-                text: 'As senhas não se coincidem!',
-                icon: 'error'
-            }
-            );
+            div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Erro!</b><br>
+           As senhas não se coincidem!`
         }
         else {
-            swal.fire({
-                title: "Sucesso!",
-                text: "Cadastro concluído!",
-                icon: 'success',
-                toast: true,
-                showConfirmButton: false,
-                background: '#402019 ',
-                color: 'white'
-            })
+            div_erro.style.display = 'block';
+           mensagem_erro.innerHTML = `<b>Sucesso!</b><br>
+           Cadastro concluido!`
             setTimeout(() => {
                 window.location.replace('../pages/login.html')
             }, 3000);
