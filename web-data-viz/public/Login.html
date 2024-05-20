@@ -29,8 +29,8 @@
                         <img src="./assets/img/headerLinha.png" alt="">
                         <li><a href="#">Entrar</a></li>
                     </ul>
+                </div>
             </nav>
-        </div>
         </div>
     </header>
     <section>
@@ -57,85 +57,65 @@
 
 </html>
 
-
-
-
 <script>
-
     var erro = 4;
-    var tentativas = 'true'
+    var tentativas = 'true';
 
     function logar() {
-        var email = 'fernando.brandao@gmail.com'
-        var senha = 'Sptech#Gf'
         var emailVar = input_email.value;
         var senhavar = input_senha.value;
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            background: '#D9C9BA ',
-            color: 'black',
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
-        if (
-
-            emailVar == '' &&
-            senhavar == ''
-        ) {
+        
+        if (emailVar === '' && senhavar === '') {
             div_erro.style.display = 'block';
-           mensagem_erro.innerHTML = `<b>Erro!</b><br>
-           Todos os campos devem ser preenchidos!`
-            
-        }
-        else if (emailVar != email) {
+            mensagem_erro.innerHTML = `<b>Erro!</b><br>Todos os campos devem ser preenchidos!`;
+        } else if (tentativas === 'true') {
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhavar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!");
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.ID_EMPRESA = json.empresa;
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+
+                        div_erro.style.display = 'block';
+                        mensagem_erro.innerHTML = `<b>Sucesso!</b><br>Login realizado!`;
+                        
+                        setTimeout(function () {
+                            window.location = "./dashboard/Dashboard.html";
+                        }, 1000);
+                    });
+
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        mensagem_erro.innerHTML = `<b>Erro!</b><br>${texto}`;
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            });
+
+        } else if (tentativas === 'false') {
             div_erro.style.display = 'block';
-           mensagem_erro.innerHTML = `<b>Erro!</b><br>
-           Este usuário não existe!`
-            
-        }
-        else if ((emailVar == email) && (senhavar != senha)) {
-            div_erro.style.display = 'block';
-           mensagem_erro.innerHTML = `<b>Erro!</b><br>
-           Senha inválida!`
-            
-            erro--
-
-            if (erro <= 0) {
-                div_erro.style.display = 'block';
-           mensagem_erro.innerHTML = `<b>Tentativas excedidas!</b><br>
-            Reinicie a página para tentar novamente!`
-            
-
-                tentativas = 'false'
-            }
-        }
-
-        else if (tentativas == 'true' && ((emailVar == email) && (senhavar == senha))) {
-            
-                div_erro.style.display = 'block';
-           mensagem_erro.innerHTML = `<b>Sucesso!</b><br>
-           Login realizado!`
-            
-            
-            setTimeout(() => {
-                window.location.replace('../pages/Dashboard.html')
-            }, 3000);
-            erro = 4;
-        }
-
-        else if (tentativas == 'false') {
-             div_erro.style.display = 'block';
-           mensagem_erro.innerHTML = `<b>Tentativas Excedidas!</h2><br><br>
-           Tente novamente mais tarde!`
-            
+            mensagem_erro.innerHTML = `<b>Tentativas Excedidas!</h2><br><br>Tente novamente mais tarde!`;
         }
     }
-
 </script>
