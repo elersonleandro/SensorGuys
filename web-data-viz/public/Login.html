@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/cadastro-login.css">
     <link rel="shortcut icon" href="./assets/img/logo_image.png">
-    <link rel="stylesheet" href="../public/css/alerta-erro.css">
+    <link rel="stylesheet" href="./css/alerta-erro.css">
 </head>
 
 <body>
@@ -69,7 +69,7 @@
             div_erro.style.display = 'block';
             mensagem_erro.innerHTML = `<b>Erro!</b><br>Todos os campos devem ser preenchidos!`;
         } else if (tentativas === 'true') {
-            fetch("/usuarios/autenticar", {
+            fetch("/funcionario/autenticar", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
