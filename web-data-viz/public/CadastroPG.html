@@ -42,9 +42,7 @@
                     <h1>Cadastro Funcionário</h1>
                     <p>Insira as informações do funcionário para realizar o cadastro</p>
                     <select id="slc_tipo">
-                        <option disabled selected value="#">Selecione o tipo</option>
-                        <option value="Gerente">Gerente</option>
-                        <option value="Analista">Analista</option>
+                        <option selected id="Gerente">Gerente</option>
                     </select>
                     <input type="text" id="input_nome" placeholder="Nome">
                     <br>
@@ -67,27 +65,23 @@
 
 </html>
 <script>
-    sessionStorage.ID_EMPRESA =1;
-    sessionStorage.ID_USUARIO =1;
 
 
 
     function cadastro() {
-
-        var empresaVar = sessionStorage.ID_EMPRESA;
-        var emailVar = input_email.value;
+        var emailVar = input_email.value
         var senhaVar = input_senha.value;
         var nomeVar = input_nome.value;
         var repSenhavar = input_repetirSenha.value;
         var tipoVar = slc_tipo.value;
-        var gerenteVar = sessionStorage.ID_USUARIO;
+        var gerente = null;
 
         if (
             nomeVar == '' ||
             emailVar == '' ||
             senhaVar == '' ||
             repSenhavar == '' ||
-            tipoVar == '#'
+            tipoVar == '#' 
         ) {
             div_erro.style.display = 'block';
             mensagem_erro.innerHTML = `<b>Erro!</b><br>
@@ -126,10 +120,7 @@
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
-                empresaServer: empresaVar,
-                cargoServer: tipoVar,
-                gerenteServer: gerenteVar
-
+                tipoServer: tipoVar,
             }),
         })
             .then(function (resposta) {
