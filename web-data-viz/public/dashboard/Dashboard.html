@@ -7,7 +7,6 @@
     <title>Dashboard || View Coffee</title>
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/footer.css">
     <link rel="shortcut icon" href="../assets/img/logo_image.png">
 </head>
 
@@ -20,7 +19,6 @@
             <nav class="navbar">
                 <div class="header_center">
                     <ul>
-                        <li><a href="../DashboardMacro.html">Análise</a></li>
                         <li><a href="../GerenciarFunc.html">Gerenciar Funcionários</a></li>
                     </ul>
                 </div>
@@ -34,76 +32,26 @@
     </header>
     <section>
         <div class="dashboard">
-            <div class="armazem">
-                <select id="select_armazem" onchange="mudarArmazem()">
-                    <option value=1>Armazém 1</option>
-                    <option value=2>Armazém 2</option>
-                    <option value=3>Armazém 3</option>
-                </select>
-
+            <div class="status">
+                <p>Status dash</p>
             </div>
-            <div class="dado">
-                <div class="card">
-                    <div id="temperatura_card">
-                        <h1>Temperatura</h1>
-                    </div>
-                    <div class="card_content">
-                        <div class="dado_card">
-                            <span>Atual</span>
-                            <div id="temperatura"></div>
-                        </div>
-                        <div class="dado_card">
-                            <span>Faixa Recomendada</span>
-                            <span>10 - 11°C</span>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="card">
-                    <div id="umidade_card">
-                        <h1>Umidade</h1>
-                    </div>
-
-                    <div class="card_content">
-                        <div class="dado_card">
-                            <span>Atual</span>
-                            <div id="umidade"></div>
-                        </div>
-                        <div class="dado_card">
-                            <span>Faixa Recomendada</span>
-                            <span>52 - 67%</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="grafico" id="graphic1">
-
-                <div class="content_grafico">
+            <div class="graphics-container">
+                <div class="graphic-wrapper">
+                    <h2>Gráfico de Temperatura</h2>
                     <canvas id="grafico_temperatura1"></canvas>
                 </div>
-                <div class="content_grafico">
+                <div class="graphic-wrapper">
+                    <h2>Gráfico de Umidade</h2>
                     <canvas id="grafico_umidade1"></canvas>
                 </div>
             </div>
-            <div class="grafico" id="graphic2" style="display: none;">
-                <div class="content_grafico">
-                    <canvas id="grafico_temperatura2"></canvas>
-                </div>
-                <div class="content_grafico">
-                    <canvas id="grafico_umidade2"></canvas>
-                </div>
+            <div class="status2">
+                <p>alertas</p>
             </div>
-            <div class="grafico" id="graphic3" style="display: none;">
-                <div class="content_grafico">
-                    <canvas id="grafico_temperatura3"></canvas>
-                </div>
-                <div class="content_grafico">
-                    <canvas id="grafico_umidade3"></canvas>
-                </div>
-            </div>
+        </div>
     </section>
+    
+    
 
     <footer>
         <div id='footer' class='footer'>

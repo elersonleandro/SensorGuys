@@ -1,3 +1,8 @@
+@font-face {
+    font-family: sofia-normal;
+    src: url("../font/Sofia_Sans_Condensed/SofiaSansCondensed-VariableFont_wght.ttf");
+}
+
 html
 {
     height: 100%;
@@ -24,23 +29,20 @@ section
     width: 100%;
     background-color: #402019;
     align-self: center;
-    
     align-items: center;
     justify-content: center;
 }
 
-.dashboard
-{
-    margin-top: 5%;
+.dashboard {
+    margin-top: 30%;
     background-color: #F1E3D6;
-    height: 80vh;
+    height: auto; 
     width: 75%;
     border-radius: 25px;
-    padding: 0 60px; 
+    padding: 20px; 
     display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    justify-content: space-between; 
+    align-items: flex-start; 
 }
 
 .dashboard .armazem
@@ -65,34 +67,37 @@ section
     text-align: center;
 }
 
-.dashboard .dado 
-{
-    width: 100%;
-    height: 25%;
+
+.status2 {
+    background-color: #C3A78C;
+    height: 90vh;
+    width: 10%;
+    border-radius: 25px;
+    padding: 0 60px; 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    color: #000; 
+    font-family: sofia-normal; 
 }
 
-.dashboard .card
-{
-    width: 50%;
-    height: 100%;
+.status {
+    background-color: #C3A78C;
+    height: 90vh;
+    width: 30%;
+    border-radius: 25px;
+    padding: 0 60px; 
     display: flex;
-    align-self: center;
-    background-color: #D9C9BA;
-    margin: 0 20px;
-    border-radius: 20px;
-    justify-content: start;
-
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    color: #000;
+    font-family: sofia-normal;
 }
-.dashboard .card h1
-{
-    margin: 0;
-    width: 25%;
-    height: 100%;
-    font-size: 25px;
 
-}
 
 .dashboard .card .card_content
 {
@@ -157,3 +162,99 @@ section
     color: #cc1010;
      border-color: #cc1010;
 }
+
+.footer
+{
+width: 100%;
+height:20vh;
+}
+.rectangle39
+{
+background-color:#d9c9ba;
+height:10%;
+width:100%;
+left:1px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 20%;
+}
+.rectangle38
+{
+background-color:#402019;
+height:20vh;
+width:100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: end;
+}
+.viewcoffee
+{
+height:150px;
+width:150px;
+z-index: 1;
+}
+.todosdireitosreservados
+{
+display: flex;
+background-color: #d9c9ba;
+align-items: center;
+justify-content: center;
+color:#000000;
+text-align:center;
+font-size:15px;
+font-family:Inter;
+width: 100%;
+height:30px;
+}
+.outlook
+{
+height: 38px;
+width:35px;
+margin-left: 5%;
+}
+.contate-nos
+{
+color:#ffffff;
+text-align:center;
+font-size:30px;
+font-family:sofia-normal;
+width:20%;
+height:fit-content;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: row;
+margin-bottom: 35px;
+
+} .contate-nos a
+{
+text-decoration: none;
+color: #ffffff;
+}
+
+.graphics-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%; 
+}
+
+.graphic-wrapper {
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.graphic-wrapper h2 {
+    margin-bottom: 10px;
+    font-family: sofia-normal;
+    font-size: 18px;
+    color: #402019;
+}
+
+.graphic-wrapper canvas {
+    width: 100%; 
+    height: auto;
+}
+
