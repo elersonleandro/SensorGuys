@@ -12,8 +12,8 @@ router.post("/autenticar", function (req, res) {
     funcionarioController.autenticar(req, res);
 });
 
-router.post("/cadastrarpg", function (req, res) {
-    funcionarioController.cadastrarpg(req, res);
-});
+router.post("/listar", function(req, res) {
+    funcionarioController.listar(req,res)
+})
 
 module.exports = router;

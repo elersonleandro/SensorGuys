@@ -22,20 +22,36 @@
 
 .corpo_dentro {
     display: flex;
-    justify-content: center;
-    align-items: self-start;
+    align-items: center;
     text-align: center;
     color: black;
     font-size: 15px;
     width: 80%;
+    height: auto;
+    overflow: scroll;
+    scrollbar-width: none;
     height: fit-content;
     padding: 0;
     background-color: #D9C9BA;
     border: 2px solid #D9C9BA;
     border-radius: 25px;
     min-height: 70vh;
-    
+    flex-direction: column;
 
+}
+.card_funcionario{
+    width: 55%;
+    height: 12%;
+    padding: 0 15%;
+    background-color: #F1E3D6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #46261f;
+    font-size: 2.5vh;
+    border-radius: 6px;
+    margin-top: 2.5%;
+    font-family: sofia-normal;
 }
 
 .corpo_func {
@@ -50,7 +66,14 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    display: flex;
 }
+
+.corpo_dentro h1 {
+    font-family: sofia-normal;
+    align-self: center;
+}
+
 .lista{
     display: flex;
     justify-content: space-around;
