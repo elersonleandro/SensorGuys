@@ -19,6 +19,7 @@
             <nav class="navbar">
                 <div class="header_center">
                     <ul>
+
                         <li><a href="../GerenciarFunc.html">Gerenciar Funcionários</a></li>
                     </ul>
                 </div>
@@ -33,25 +34,105 @@
     <section>
         <div class="dashboard">
             <div class="status">
-                <p>Status dash</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>armazens</th>
+                            <th>temperatura</th>
+                            <th>umidade</th>
+                            <th>status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td>Armazem 1</td>
+                            <td>30°</td>
+                            <td>62%</td>
+                            <td><div class="status-indicador red"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Armazem 2</td>
+                            <td>10°</td>
+                            <td>52%</td>
+                            <td><div class="status-indicador green"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Armazem 3</td>
+                            <td>15°</td>
+                            <td>57%</td>
+                            <td><div class="status-indicador yellow"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Armazem 4</td>
+                            <td>11°</td>
+                            <td>53%</td>
+                            <td><div class="status-indicador green"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Armazem 5</td>
+                            <td>10°</td>
+                            <td>52%</td>
+                            <td><div class="status-indicador green"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Armazem 6</td>
+                            <td>9°</td>
+                            <td>50%</td>
+                            <td><div class="status-indicador green"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Armazem 7</td>
+                            <td>10°</td>
+                            <td>52%</td>
+                            <td><div class="status-indicador green"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Armazem 8</td>
+                            <td>10°</td>
+                            <td>52%</td>
+                            <td><div class="status-indicador green"></div></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="graphics-container">
-                <div class="graphic-wrapper">
+            
+            <div class="grafico-container">
+                <div class="grafico-dentro">
                     <h2>Gráfico de Temperatura</h2>
                     <canvas id="grafico_temperatura1"></canvas>
                 </div>
-                <div class="graphic-wrapper">
+                <div class="grafico-dentro">
                     <h2>Gráfico de Umidade</h2>
                     <canvas id="grafico_umidade1"></canvas>
                 </div>
             </div>
             <div class="status2">
                 <p>alertas</p>
+                <img src="../assets/img/linha.png" alt="">
+                <div class="cardalerta">
+                    <p>Armazem 3</p>
+                    <p>temperatura 5º acima da média</p>
+                    <p>umidade 10% abaixo da média</p>
+                    <p>04-06-2024 12:51:0</p>
+                </div>
+                <img src="../assets/img/linha.png" alt="">
+                <div class="cardalerta">
+                    <p>Armazem 1</p>
+                    <p>temperatura 20º acima da média</p>
+                    <p>umidade 20% abaixo da média</p>
+                    <p>04-06-2024 12:51:0</p>
+                </div>
+                <img src="../assets/img/linha.png" alt="">
+                <div class="cardalerta">
+                    <p>Armazem 7</p>
+                    <p>temperatura 20º abaixo da média</p>
+                    <p>umidade 20% acima da média</p>
+                    <p>04-06-2024 12:51:0</p>
+                </div>
             </div>
         </div>
     </section>
-    
-    
 
     <footer>
         <div id='footer' class='footer'>
