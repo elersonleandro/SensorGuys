@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Funcionário</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/gerenciar-fun.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="shortcut icon" href="../assets/img/logo_image.png">
+</head>
+
+<body onload="listar()">
+    <header>
+        <div class="header">
+            <div class="header_left">
+                <a href="../index.html"><img src="../assets/img/logo_image.png" alt="logo do projeto"></a>
+            </div>
+            <nav class="navbar">
+                <div class="header_center">
+                    <ul>
+                        <li><a href="./Dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="header_right">
+                    <ul>
+                        <img src="../assets/img/headerLinha.png" alt="">
+                        <li><a href="../index.html">Página Inicial</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="corpo">
+            <div class="adicionar">
+                <a href="../Cadastro.html">
+                    <img src="../assets/img/adicionar.png" alt="imagem de adicionar">
+                </a>
+            </div>
+            <div id="corpo_dentro" class="corpo_dentro"></div>
+        </div>
+    </section>
+    <footer>
+        <div id='footer' class='footer'>
+            <div class='rectangle39'>
+                <img id='viewcoffee' class='viewcoffee' src='../assets/img/logo_image.png'>
+            </div>
+            <div class='rectangle38'>
+
+                <div id='contate-nos' class='contate-nos'>
+                    Contate-nos
+                    <img id='outlook' class='outlook' src="../assets/img/img_outlook.png">
+                </div>
+            </div>
+
+            <div class='todosdireitosreservados'>
+                @ 2024 todos direitos reservados
+            </div>
+
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<script>
+    function listar() {
+        var idgerente = sessionStorage.ID_USUARIO;
+        var idEmpresa = sessionStorage.ID_EMPRESA;
+
+        fetch("/funcionario/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idfuncionarioServer: idgerente,
+                empresaIdServer: idEmpresa,
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var corpo = document.getElementById("corpo_dentro")
+                    var mensagem = document.createElement("h1")
+                    corpo.style.alignSelf = "center"
+                    mensagem.innerHTML = `Nenhum funcionário adicionado até o momento`
+                    corpo.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado";
+                }
+
+
+                resposta.json().then(function (resposta) {
+                   
+
+                    var corpo = document.getElementById("corpo_dentro")
+                    for (var index = 0; index < resposta.length; index++) {
+                        var funcionario = resposta[index];
+
+                        var div_Funcionario = document.createElement("div");
+                        var span_nome = document.createElement("span");
+                        var span_email = document.createElement("span");
+                        var span_cargo = document.createElement('span');
+
+                        span_nome.innerHTML = `Nome: ${funcionario.nome}`;
+                        span_email.innerHTML = `Email: ${funcionario.email}`;
+                        span_cargo.innerHTML = `Cargo: ${funcionario.cargo}`;
+
+                        div_Funcionario.className="card_funcionario"
+
+                        div_Funcionario.appendChild(span_nome);
+                        div_Funcionario.appendChild(span_email);
+                        div_Funcionario.appendChild(span_cargo);
+                        corpo.appendChild(div_Funcionario);
+
+
+                    }
+                })
+            }
+        })
+    }
+</script>

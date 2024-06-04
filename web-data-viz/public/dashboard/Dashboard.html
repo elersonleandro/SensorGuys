@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="../assets/img/logo_image.png">
 </head>
 
-<body>
+<body onload="verificarGerente()">
     <header>
         <div class="header">
             <div class="header_left">
@@ -19,8 +19,7 @@
             <nav class="navbar">
                 <div class="header_center">
                     <ul>
-
-                        <li><a href="../GerenciarFunc.html">Gerenciar Funcionários</a></li>
+                        <li id="gerenciar_fun" style="display: none;"><a href="./GerenciarFunc.html">Gerenciar Funcionários</a></li>
                     </ul>
                 </div>
                 <div class="header_right">
@@ -367,7 +366,13 @@
 
     }
 
-    
+    function verificarGerente()
+    {
+        if(sessionStorage.CARGO_USUARIO == 'gerente' || sessionStorage.CARGO_USUARIO == 'Gerente')
+        {
+            gerenciar_fun.style.display = "block"
+        }
+    }
 
 
 

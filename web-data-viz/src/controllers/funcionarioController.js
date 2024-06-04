@@ -24,8 +24,8 @@ function autenticar(req, res) {
                             id: resultadoAutenticar[0].idfuncionario,
                             email: resultadoAutenticar[0].email,
                             nome: resultadoAutenticar[0].nome,
-                            fkempresa: resultadoAutenticar[0].empresaId
-
+                            fkempresa: resultadoAutenticar[0].empresaId,
+                            cargo: resultadoAutenticar[0].cargo
                         })
 
                         // aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
@@ -98,7 +98,28 @@ function cadastro(req, res) {
             );
     }
 }
+
+function listar(req, res) {
+    var idfuncionario = req.body.idfuncionarioServer;
+    var empresaId = req.body.empresaIdServer;
+
+    funcionarioModel.listar(idfuncionario, empresaId)
+        .then(function (resposta) {
+            if (resposta.length >= 0) {
+                res.status(200).json(resposta)
+            }
+            else
+            {
+                res.status(204).send("Nenhum resultado encontrado")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao listar funcionários ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        })
+}
 module.exports = {
     autenticar,
-    cadastro
+    cadastro,
+    listar
 }
