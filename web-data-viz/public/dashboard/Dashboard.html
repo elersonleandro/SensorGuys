@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="../assets/img/logo_image.png">
 </head>
 
-<body onload="verificarGerente()">
+<body onload="verificarGerente(),  plotarGrafico()">
     <header>
         <div class="header">
             <div class="header_left">
@@ -19,7 +19,8 @@
             <nav class="navbar">
                 <div class="header_center">
                     <ul>
-                        <li id="gerenciar_fun" style="display: none;"><a href="./GerenciarFunc.html">Gerenciar Funcionários</a></li>
+                        <li id="gerenciar_fun" style="display: none;"><a href="./GerenciarFunc.html">Gerenciar
+                                Funcionários</a></li>
                     </ul>
                 </div>
                 <div class="header_right">
@@ -43,59 +44,75 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         <tr>
                             <td>Armazem 1</td>
                             <td>30°</td>
                             <td>62%</td>
-                            <td><div class="status-indicador red"></div></td>
+                            <td>
+                                <div class="status-indicador red"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Armazem 2</td>
                             <td>10°</td>
                             <td>52%</td>
-                            <td><div class="status-indicador green"></div></td>
+                            <td>
+                                <div class="status-indicador green"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Armazem 3</td>
                             <td>15°</td>
                             <td>57%</td>
-                            <td><div class="status-indicador yellow"></div></td>
+                            <td>
+                                <div class="status-indicador yellow"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Armazem 4</td>
                             <td>11°</td>
                             <td>53%</td>
-                            <td><div class="status-indicador green"></div></td>
+                            <td>
+                                <div class="status-indicador green"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Armazem 5</td>
                             <td>10°</td>
                             <td>52%</td>
-                            <td><div class="status-indicador green"></div></td>
+                            <td>
+                                <div class="status-indicador green"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Armazem 6</td>
                             <td>9°</td>
                             <td>50%</td>
-                            <td><div class="status-indicador green"></div></td>
+                            <td>
+                                <div class="status-indicador green"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Armazem 7</td>
                             <td>10°</td>
                             <td>52%</td>
-                            <td><div class="status-indicador green"></div></td>
+                            <td>
+                                <div class="status-indicador green"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Armazem 8</td>
                             <td>10°</td>
                             <td>52%</td>
-                            <td><div class="status-indicador green"></div></td>
+                            <td>
+                                <div class="status-indicador green"></div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            
+
             <div class="grafico-container">
                 <div class="grafico-dentro">
                     <h2>Gráfico de Temperatura</h2>
@@ -164,175 +181,47 @@
 
 <script>
 
-    const contextoLm35Temperatura1 = document.getElementById('grafico_temperatura1').getContext('2d');
-    const contextoDht11Umidade1 = document.getElementById('grafico_umidade1');
-    const contextografico_temperatura2 = document.getElementById('grafico_temperatura2');
-    const contextografico_umidade2 = document.getElementById('grafico_umidade2');
-    const contextografico_temperatura3 = document.getElementById('grafico_temperatura3');
-    const contextografico_umidade3 = document.getElementById('grafico_umidade3');
-
-    var lm35Temperatura = new Chart(
-        contextoLm35Temperatura1,
-        {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Temperatura',
-                    type: 'line',
-                    borderColor: ['#08241c'],
-                    backgroundColor: ['#08241c']
-                }]
-
-            },
-            options: {
-
-                scales: {
-                    xAxes: [{
-                        distribution: 'series',
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }],
-                    yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Temperatura'
-                        },
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                },
-                animation: {
-                    duration: 0
-                }
-            }
-            
-        }
-    );
-
-
-    var dht11Umidade = new Chart(
-        contextoDht11Umidade1,
-        {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Umidade',
-                    type: 'line',
-                    borderColor: ['#08241c'],
-                    backgroundColor: ['#08241c']
-                }]
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                        distribution: 'series',
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }],
-                    yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Umidade'
-                        },
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                },
-                animation: {
-                    duration: 0
-                }
-            }
-        }
-    );
-
-
-    new Chart(contextografico_temperatura2,
-        {
-            type: 'line',
-            data: {
-                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-                datasets: [
-                    {
-                        label: 'Temperatura',
-                        backgroundColor: '#08241c',
-                        borderColor: '#08241c',
-                        data: [25.42, 25.42, 26.39, 27.37, 28.84, 27.86]
-                    }
-                    
-
-                ]
-
-
-            }
-        }
-    )
-    new Chart(contextografico_umidade2,
-        {
-            type: 'line',
-            data: {
-                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-                datasets: [
-                    {
-                        label: 'Umidade',
-                        backgroundColor: '#08241c',
-                        borderColor: '#08241c',
-                        data: [54, 56, 52, 53, 55, 57]
-                    }
-
-                ]
-            }
-        }
-    )
-    new Chart(contextografico_temperatura3,
-        {
-            type: 'line',
-            data: {
-                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-                datasets: [
-                    {
-                        label: 'Temperatura',
-                        backgroundColor: '#08241c',
-                        borderColor: '#08241c',
-                        data: [25.9, 25.42, 26.39, 25.45, 26.32, 25.42]
-                    }
-
-                ]
-
-            }
-        }
-    )
-    new Chart(contextografico_umidade3,
-        {
-            type: 'line',
-            data: {
-                labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-                datasets: [
-                    {
-                        label: 'Umidade',
-                        backgroundColor: '#08241c',
-                        borderColor: '#08241c',
-                        data: [71, 71.1, 60.2, 61.5, 61.8, 60]
-                    }
-
-                ]
-
-            }
-        }
-    )
-
-
-
+    const contextoLm35Temperatura = document.getElementById('grafico_temperatura1').getContext('2d');
+    const contextoDht11Umidade = document.getElementById('grafico_umidade1');
 </script>
 
 <script>
-    mudarArmazem();
+    var graficoTemp = new Chart(
+        contextoLm35Temperatura,
+        {
+            type: 'line',
 
-    
+            data: {
+                labels: [],
+                datasets: [{
+                    type: 'line',
+                    label: 'Temperatura',
+                    data: [],
+                    borderColor: ['#08241c'],
+                    backgroundColor: ['#08241c']
+                }]
 
+            }
+
+        }
+    );
+
+    var graficoUmid = new Chart(
+        contextoDht11Umidade,
+        {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    type: 'line',
+                    label: 'Umidade',
+                    data: [],
+                    borderColor: ['#08241c'],
+                    backgroundColor: ['#08241c']
+                }]
+            }
+        }
+    );
     function mudarArmazem() {
         var armazem = select_armazem.value;
 
@@ -366,12 +255,52 @@
 
     }
 
-    function verificarGerente()
-    {
-        if(sessionStorage.CARGO_USUARIO == 'gerente' || sessionStorage.CARGO_USUARIO == 'Gerente')
-        {
+    function verificarGerente() {
+        if (sessionStorage.CARGO_USUARIO == 'gerente' || sessionStorage.CARGO_USUARIO == 'Gerente') {
             gerenciar_fun.style.display = "block"
         }
+    }
+
+    async function plotarGrafico() {
+        let lista_dadosTemp = [];
+        let lista_dadosUmid = [];
+        let lista_data = [];
+        let idArmazem = 1;
+        let idEmpresa = sessionStorage.ID_EMPRESA;
+
+        fetch("/dados/plotarGrafico", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                armazemServer: idArmazem,
+                empresaServer: idEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 200) {
+                    resposta.json().then(function (resposta) {
+                        for (var index = 0; index < resposta.length; index++) {
+                            var dadoTemp = resposta[index].temperatura;
+                            var dadoUmid = resposta[index].umidade;
+                            var dataDado = resposta[index].dataDado;
+
+                            
+                        }
+
+
+                        setInterval(plotarGrafico, 10000)
+
+                    })
+                }
+                else {
+                    console.log("Não foi encontrado nenhum dado")
+                    alert("Não foi encontrado nenhum dado")
+                    return false;
+                }
+            }
+        })
     }
 
 
