@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard || View Coffee</title>
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="shortcut icon" href="../assets/img/logo_image.png">
 </head>
@@ -192,15 +193,30 @@
             type: 'line',
 
             data: {
-                labels: [],
                 datasets: [{
                     type: 'line',
                     label: 'Temperatura',
-                    data: [],
                     borderColor: ['#08241c'],
                     backgroundColor: ['#08241c']
                 }]
 
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: 50
+                        }
+                    }]
+                }
             }
 
         }
@@ -211,17 +227,35 @@
         {
             type: 'line',
             data: {
-                labels: [],
+
                 datasets: [{
                     type: 'line',
                     label: 'Umidade',
-                    data: [],
                     borderColor: ['#08241c'],
                     backgroundColor: ['#08241c']
                 }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }]
+                }
             }
         }
     );
+
+
     function mudarArmazem() {
         var armazem = select_armazem.value;
 
@@ -258,10 +292,11 @@
     function verificarGerente() {
         if (sessionStorage.CARGO_USUARIO == 'gerente' || sessionStorage.CARGO_USUARIO == 'Gerente') {
             gerenciar_fun.style.display = "block"
+
         }
     }
 
-    async function plotarGrafico() {
+    function plotarGrafico() {
         let lista_dadosTemp = [];
         let lista_dadosUmid = [];
         let lista_data = [];
@@ -281,18 +316,32 @@
             if (resposta.ok) {
                 if (resposta.status == 200) {
                     resposta.json().then(function (resposta) {
+                        resposta = resposta.reverse();
+                        console.log("TESTE:::: ", resposta);
                         for (var index = 0; index < resposta.length; index++) {
                             var dadoTemp = resposta[index].temperatura;
                             var dadoUmid = resposta[index].umidade;
                             var dataDado = resposta[index].dataDado;
-
-                            
+                            lista_dadosTemp.push(dadoTemp);
+                            lista_dadosUmid.push(dadoUmid);
+                            lista_data.push(dataDado);
+                            graficoTemp.data.datasets[0].data = lista_dadosTemp;
+                            graficoUmid.data.datasets[0].data = lista_dadosUmid;
+                            graficoTemp.data.labels = lista_data
+                            graficoUmid.data.labels = lista_data;
+                            graficoTemp.update();
+                            graficoUmid.update();
                         }
 
 
-                        setInterval(plotarGrafico, 10000)
+                        setTimeout(function () {
+                            plotarGrafico()
+                        }, 5000)
+
 
                     })
+
+
                 }
                 else {
                     console.log("Não foi encontrado nenhum dado")
@@ -300,9 +349,9 @@
                     return false;
                 }
             }
-        })
+        }
+        )
     }
-
 
 
 
