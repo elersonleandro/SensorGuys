@@ -1,59 +1,65 @@
-CREATE DATABASE sprint2;
-USE sprint2;
+create database Sprint3; use Sprint3;
 
-CREATE TABLE empresa(
-idEmpresa INT PRIMARY KEY AUTO_INCREMENT, -- Acho que poderia ser char e algum número, só para não ser um id previsível
-cnpj CHAR(14),
-nomeEmpresa VARCHAR(45),
-email VARCHAR(45)
+create table empresa (
+idempresa int primary key auto_increment,
+cnpj char(14),
+NomeEmpresa varchar(45),
+email varchar(45)
 );
 
-CREATE TABLE funcionario(
-idFuncionario INT AUTO_INCREMENT,
-fkEmpresa INT,
-CONSTRAINT PKfuncionarioEmpresa 
-PRIMARY KEY(idFuncionario, fkEmpresa),
-nome VARCHAR(45),
-cargo VARCHAR(8),
-email VARCHAR(50),
-senha VARCHAR(45),
-CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkEmpresa)
-REFERENCES empresa(idEmpresa)
+create table funcionario (
+idfuncionario int auto_increment ,
+fkempresa int,
+constraint PKFuncionarioEmpresa primary key (idfuncionario, fkempresa),
+Nome varchar(45),
+Senha varchar(45),
+email varchar(45),
+cargo varchar(8),
+fkgerente int,
+foreign key (fkgerente) references funcionario (idfuncionario),
+foreign key (fkempresa) references empresa (idempresa)
 );
 
-CREATE TABLE armazem(
-idArmazem INT AUTO_INCREMENT,
-fkEmpresa INT,
-CONSTRAINT pkArmazemEmpresa 
-PRIMARY KEY(idArmazem, fkEmpresa),
-tipoCafe CHAR(7),
-CONSTRAINT fkArmazemEmpresa FOREIGN KEY (fkEmpresa)
-REFERENCES empresa(idEmpresa)
+create table cafe (
+idcafe int primary key auto_increment,
+Nome varchar(45),
+TempMIN decimal,
+TempMAX decimal,
+UmidadeMIN decimal,
+UmidadeMAX decimal
 );
 
-CREATE TABLE arduino(
-idArduino INT AUTO_INCREMENT,
-fkArmazem INT, 
-CONSTRAINT pkSensorArmazem 
-PRIMARY KEY(idArduino, fkArmazem),
-CONSTRAINT fkArduinoArmazem FOREIGN KEY (fkArmazem)
-REFERENCES armazem(idArmazem)
+create table armazem (
+idarmazem int primary key,
+fkempresa int,
+constraint fkEmpresario foreign key (fkempresa) references empresa (idempresa),
+fkTipoCafe int,
+constraint FkCafe foreign key (fkTipoCafe) references cafe (idcafe)
 );
 
-CREATE TABLE dadoCapturado(
-idDado INT AUTO_INCREMENT,
-fkArduino INT,
-CONSTRAINT pkDadoSensor 
-PRIMARY KEY (idDado, fkArduino),
-temperatura DECIMAL(5,2),
-umidade DECIMAL(5,2),
-dtRegistro DATETIME DEFAULT CURRENT_TIMESTAMP,
-CONSTRAINT fkDadoArduino FOREIGN KEY(fkArduino)
-REFERENCES arduino(idArduino)
+create table arduino (
+idarduino int primary key,
+fkarmazem int,
+constraint fkArduinoArmazem foreign key (fkarmazem) references armazem (idarmazem),
+fkempresa int,
+constraint fkArduinoEmpresa foreign key (fkempresa) references empresa (idempresa)
 );
 
-DESC empresa;
-DESC funcionario;
-DESC armazem;
-DESC arduino;
-DESC dadoCapturado;
+create table dadoCapturado (
+idDado int  primary key auto_increment,
+temperatura decimal (5,2),
+umidade decimal (5,2),
+fkarmazem int,
+constraint fkArmazemDado foreign key (fkarmazem) references armazem (idarmazem),
+fkarduino int,
+constraint fkDadoArduino foreign key (fkarduino) references arduino (idarduino),
+fkempresa int,
+constraint fkDadoFuncionario foreign key (fkempresa) references empresa (idempresa)
+);
+
+
+INSERT INTO empresa (cnpj, NomeEmpresa, email) 
+VALUES ('12345678901234', 'ViewCoffee', 'contato@empresaexemplo.com.br');
+
+INSERT INTO funcionario (fkempresa, Nome, Senha, email, cargo, fkgerente) 
+VALUES (1, 'Fernando Brandão', 'senha123', 'fernando.brandao@empresaexemplo.com.br', 'Gerente', NULL);
