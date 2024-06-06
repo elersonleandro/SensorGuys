@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobIA</title>
+    <link rel="stylesheet" href="./css/style.css">  
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="header_left">
+                <a href="../index.html"><img src="../assets/img/logo_image.png" alt="logo do projeto"></a>
+            </div>
+            <nav class="navbar">
+                <div class="header_center">
+                    <ul>
+                        <li><a href="../DashboardMacro.html">Análise</a></li>
+                        <li><a href="../GerenciarFunc.html">Gerenciar Funcionários</a></li>
+                    </ul>
+                </div>
+                <div class="header_right">
+                    <ul>
+                        <img src="../assets/img/headerLinha.png" alt="">
+                        <li><a href="../index.html">Página Inicial</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <div id="container">
+        <h1>BobIA</h1>
+        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+        <br><br>
+        <button onclick="gerarResposta()">Gerar Resposta</button>
+        <h3>Resposta da IA:</h3>
+        <div id="resposta"></div>
+    </div>
+    
+    <script>
+        
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+            
+            const response = await fetch('http://localhost:3334/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText = data.resultado;
+        }
+
+    </script>
+    
+    <footer>
+        <div id='footer' class='footer'>
+            <div class='rectangle39'>
+                <img id='viewcoffee' class='viewcoffee' src='../assets/img/logo_image.png'>
+            </div>
+            <div class='rectangle38'>
+    
+                <div id='contate-nos' class='contate-nos'>
+                    <a href="../contate-nos.html">
+                        Contate-nos
+                    </a>
+                    <img id='outlook' class='outlook' src="../assets/img/img_outlook.png">
+                </div>
+            </div>
+    
+            <div class='todosdireitosreservados'>
+                @ 2024 todos direitos reservados
+    
+            </div>
+    
+        </div>
+    </footer>
+</body>
+</html>
