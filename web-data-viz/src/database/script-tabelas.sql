@@ -54,7 +54,8 @@ constraint fkArmazemDado foreign key (fkarmazem) references armazem (idarmazem),
 fkarduino int,
 constraint fkDadoArduino foreign key (fkarduino) references arduino (idarduino),
 fkempresa int,
-constraint fkDadoFuncionario foreign key (fkempresa) references empresa (idempresa)
+constraint fkDadoFuncionario foreign key (fkempresa) references empresa (idempresa),
+dataDado datetime default current_timestamp
 );
 
 
