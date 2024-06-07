@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../assets/img/logo_image.png">
 </head>
 
-<body onload="verificarGerente(),  plotarGrafico()">
+<body onload="verificarGerente(),  plotarGrafico(), alertar()">
     <header>
         <div class="header">
             <div class="header_left">
@@ -124,6 +124,10 @@
                     <canvas id="grafico_umidade1"></canvas>
                 </div>
             </div>
+        </div>
+        <div class="status2" id="alertaConteiner">
+            <h1 class="alerta-titulo">ALERTAS</h1>
+            <img src="../assets/img/linha.png" alt="">
         </div>
     </section>
 
@@ -328,6 +332,116 @@
         }
         )
     }
+
+    function mudarArmazem() {
+
+
+    }
+
+    function alertar() {
+        var dadoempresa = sessionStorage.ID_EMPRESA;
+
+        fetch("/dados/alertar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                empresaServer: dadoempresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 200) {
+                    resposta.json().then(function (resposta) {
+                        console.log(resposta)
+                        for (let index = 0; index < resposta.length; index++) {
+                            var alerta = resposta[index];
+                            var tempAlerta = Number(alerta.temperatura);
+                            var umidAlerta = Number(alerta.umidade);
+                            var TempMAX = Number(alerta.TempMAX);
+                            var TempMIN = Number(alerta.TempMin);
+                            var UmidadeMAX = Number(alerta.UmidadeMAX);
+                            var UmidadeMIN = Number(alerta.UmidadeMIN);
+                            var dataalerta = alerta.dataDado;
+                            
+
+
+                            var lista = document.getElementById("alertaConteiner");
+                            var divAlerta = document.createElement("div");
+                            var spanArmazen = document.createElement("span");
+                            var spanDescricao = document.createElement("span")
+                            var spanData = document.createElement("span");
+                            var imgAlerta = document.createElement('img');
+                            imgAlerta.src = '../assets/img/linha.png';
+
+                            divAlerta.innerHTML = `Armazém ${alerta.idarmazem}<br>`;
+                            if (tempAlerta > TempMAX) {
+                                spanDescricao.innerHTML = `Temperatura acima do normal : ${tempAlerta}°C<br>`;
+
+                            }
+
+                            if (tempAlerta < TempMIN) {
+                                spanDescricao.innerHTML = `Temperatura abaixo do normal : ${tempAlerta}°C<br>`;
+
+                            }
+
+                            if (umidAlerta > UmidadeMAX) {
+                                spanDescricao.innerHTML = `Umidade acima do normal : ${umidAlerta}%<br>`;
+
+                            }
+
+                            if (umidAlerta < UmidadeMIN) {
+                                spanDescricao.innerHTML = `Umidade abaixo do normal : ${umidAlerta}%<br>`;
+
+                            }
+
+                            if (tempAlerta > TempMAX && umidAlerta > UmidadeMAX) {
+                                spanDescricao.innerHTML = `Temperatura acima do normal : ${tempAlerta}°C<br>
+                               Umidade acima do normal : ${umidAlerta}%<br>`;
+                            }
+
+                            if (tempAlerta < TempMIN && umidAlerta < UmidadeMIN) {
+                                spanDescricao.innerHTML = `Temperatura abaixo do normal : ${tempAlerta}°C<br>
+                               Umidade abaixo do normal : ${umidAlerta}%<br>`;
+                            }
+
+                            if (tempAlerta > TempMAX && umidAlerta < UmidadeMIN) {
+                                spanDescricao.innerHTML = `Temperatura acima do normal : ${tempAlerta}°C<br>
+                               Umidade abaixo do normal : ${umidAlerta}%<br>`;
+                            }
+
+                            if (tempAlerta < TempMIN && umidAlerta > UmidadeMAX) {
+                                spanDescricao.innerHTML = `Temperatura abaixo do normal : ${tempAlerta}°C<br>
+                               Umidade acima do normal : ${umidAlerta}%<br>`;
+                            }
+
+
+                            spanData.innerHTML = `${dataalerta}`;
+
+
+                            lista.appendChild(divAlerta);
+                            divAlerta.appendChild(spanArmazen);
+                            divAlerta.appendChild(spanDescricao);
+                            divAlerta.appendChild(spanData);
+                            divAlerta.appendChild(imgAlerta);
+
+
+                        }
+
+                    })
+
+
+                }
+                else {
+                    console.log("Não foi encontrado nenhum ALERTA")
+                    alert("Não foi encontrado nenhum ALERTA")
+                    return false;
+                }
+            }
+        }
+        )
+    }
+
 
 
 

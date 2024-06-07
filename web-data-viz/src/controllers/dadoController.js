@@ -25,9 +25,9 @@ function plotarGrafico(req, res)
 function alertar(req, res)
 {
 
-    var idarmazem = req.body.armazemServer;
+    var idempresa = req.body.empresaServer;
 
-    dadoModel.alertar(idarmazem).then(function (resposta){
+    dadoModel.alertar(idempresa).then(function (resposta){
         if(resposta.length > 0)
         {
             res.status(200).json(resposta)

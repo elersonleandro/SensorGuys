@@ -13,13 +13,13 @@ LIMIT 5;
     return database.executar(instrucaoSql)
 }
 
-function alertar(idArmazem) {
+function alertar(idEmpresa) {
     var instrucaoSql = `
-   SELECT d.temperatura, d.umidade,DATE_FORMAT(d.dataDado, '%d/%c/%Y - %H:%I:%S') as dataDado, a.idarmazem, c.nome FROM dadoCapturado d 
+   SELECT d.temperatura, d.umidade,DATE_FORMAT(d.dataDado, '%d/%c/%Y - %H:%I:%S') as dataDado, a.idarmazem, c.nome, c.TempMAX, c.TempMin, c.UmidadeMAX, c.UmidadeMIN FROM dadoCapturado d 
 JOIN armazem as a on d.fkarmazem = a.idarmazem 
 JOIN cafe c on a.fkTipoCafe = c.idcafe 
 WHERE d.temperatura > c.TempMAX OR d.temperatura < c.TempMIN
-OR d.umidade < c.UmidadeMIN OR d.umidade > c.UmidadeMAX AND a.idArmazem = ${idArmazem};
+OR d.umidade < c.UmidadeMIN OR d.umidade > c.UmidadeMAX AND d.fkempresa = ${idEmpresa};
    `;
 
     return database.executar(instrucaoSql)
