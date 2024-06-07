@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../assets/img/logo_image.png">
 </head>
 
-<body onload="verificarGerente(),  plotarGrafico(), alertar()">
+<body onload="verificarGerente(),  plotarGrafico(), alertar(), statusdash()">
     <header>
         <div class="header">
             <div class="header_left">
@@ -34,84 +34,9 @@
     </header>
     <section>
         <div class="dashboard">
-            <div class="status">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>armazens</th>
-                            <th>temperatura</th>
-                            <th>umidade</th>
-                            <th>status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td>Armazem 1</td>
-                            <td>30°</td>
-                            <td>62%</td>
-                            <td>
-                                <div class="status-indicador red"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Armazem 2</td>
-                            <td>10°</td>
-                            <td>52%</td>
-                            <td>
-                                <div class="status-indicador green"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Armazem 3</td>
-                            <td>15°</td>
-                            <td>57%</td>
-                            <td>
-                                <div class="status-indicador yellow"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Armazem 4</td>
-                            <td>11°</td>
-                            <td>53%</td>
-                            <td>
-                                <div class="status-indicador green"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Armazem 5</td>
-                            <td>10°</td>
-                            <td>52%</td>
-                            <td>
-                                <div class="status-indicador green"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Armazem 6</td>
-                            <td>9°</td>
-                            <td>50%</td>
-                            <td>
-                                <div class="status-indicador green"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Armazem 7</td>
-                            <td>10°</td>
-                            <td>52%</td>
-                            <td>
-                                <div class="status-indicador green"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Armazem 8</td>
-                            <td>10°</td>
-                            <td>52%</td>
-                            <td>
-                                <div class="status-indicador green"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id = "status" class="status">
+                <h1 class="dash-titulo">Armazéns</h1>
+                <img src="../assets/img/linha.png" alt="">
             </div>
 
             <div class="grafico-container">
@@ -167,6 +92,8 @@
 </script>
 
 <script>
+    var idArmazem = 1
+
     var graficoTemp = new Chart(
         contextoLm35Temperatura,
         {
@@ -236,39 +163,6 @@
     );
 
 
-    function mudarArmazem() {
-        var armazem = select_armazem.value;
-
-        if (armazem == 1) {
-            graphic1.style = 'display: flex;';
-            graphic2.style = 'display: none';
-            graphic3.style = 'display: none';
-            umidade.innerHTML = ''
-            temperatura.innerHTML = ''
-        }
-
-        if (armazem == 2) {
-            graphic1.style = 'display: none;';
-            graphic2.style = 'display: flex';
-            graphic3.style = 'display: none';
-            umidade.innerHTML = `57%`;
-            temperatura.innerHTML = `27.86°C`
-        }
-        if (armazem == 3) {
-            graphic1.style = 'display: none;';
-            graphic2.style = 'display: none';
-            graphic3.style = 'display: flex';
-
-            umidade.innerHTML = `60%`
-            temperatura.innerHTML = `25.2°C`
-        }
-
-        // umidade.innerHTML = `${umidadeValue}%`
-        // temperatura.innerHTML = `${temperaturaValue}°C`
-
-
-    }
-
     function verificarGerente() {
         if (sessionStorage.CARGO_USUARIO == 'gerente' || sessionStorage.CARGO_USUARIO == 'Gerente') {
             gerenciar_fun.style.display = "block"
@@ -280,7 +174,7 @@
         let lista_dadosTemp = [];
         let lista_dadosUmid = [];
         let lista_data = [];
-        let idArmazem = 1;
+        
         let idEmpresa = sessionStorage.ID_EMPRESA;
 
         fetch("/dados/plotarGrafico", {
@@ -333,9 +227,9 @@
         )
     }
 
-    function mudarArmazem() {
-
-
+    function mudarArmazem(idArmazemVar) {
+        idArmazem = idArmazemVar
+        plotarGrafico()
     }
 
     function alertar() {
@@ -424,6 +318,147 @@
                             divAlerta.appendChild(spanDescricao);
                             divAlerta.appendChild(spanData);
                             divAlerta.appendChild(imgAlerta);
+
+
+                        }
+
+                    })
+
+
+                }
+                else {
+                    console.log("Não foi encontrado nenhum ALERTA")
+                    alert("Não foi encontrado nenhum ALERTA")
+                    return false;
+                }
+            }
+        }
+        )
+    }
+
+
+    function statusdash() {
+        var dadoempresa = sessionStorage.ID_EMPRESA;
+
+        fetch("/armazens/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                empresaServer: dadoempresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 200) {
+                    resposta.json().then(function (resposta) {
+                        console.log(resposta)
+                        for (let index = 0; index < resposta.length; index++) {
+
+                            let id = index + 1
+                            var status = resposta[index];
+                            var tempStatus = Number(status.temperatura);
+                            var umidStatus = Number(status.umidade);
+                            var TempMAX = Number(status.TempMAX);
+                            var TempMIN = Number(status.TempMin);
+                            var UmidadeMAX = Number(status.UmidadeMAX);
+                            var UmidadeMIN = Number(status.UmidadeMIN);
+                            
+                            var listaStatus = document.getElementById("status");
+                            var divStatus = document.createElement("div");
+                            var divStatusContent = document.createElement("div")
+                            var spanArmazen = document.createElement("span");
+                            var spanTemperatura = document.createElement("span")
+                            var spanUmidade = document.createElement("span");
+                            var spanUmidadeIdeal = document.createElement("span");
+                            var spanTemperaturaIdeal = document.createElement("span");
+                            var divCorStatus = document.createElement("div");
+                            var imgStatus = document.createElement('img');
+                            imgStatus.src = '../assets/img/linha.png';
+
+                            divStatus.className = 'divStatus';
+                            divStatusContent.className = "divStatusContent"
+
+
+
+                            spanArmazen.innerHTML = `<b>Armazém ${status.idarmazem}<b><br>`;
+                            spanTemperatura.innerHTML = `${tempStatus}`;
+                            spanUmidade.innerHTML = `${umidStatus}`;
+                            spanTemperaturaIdeal.innerHTML = ` ${TempMIN} - ${TempMAX} `;
+                            spanUmidadeIdeal.innerHTML = `${UmidadeMIN} - ${UmidadeMAX}`;
+
+
+                            if (tempStatus > TempMAX && umidStatus > UmidadeMAX) {
+                                divCorStatus.className = 'status-indicador red';
+
+                            }
+
+                            else if (tempStatus < TempMIN && umidStatus < UmidadeMIN) {
+                                divCorStatus.className = 'status-indicador red';
+
+                            }
+
+                            else if (tempStatus > TempMAX && umidStatus < UmidadeMIN) {
+                                divCorStatus.className = 'status-indicador red';
+
+                            }
+
+                            else if (tempStatus < TempMIN && umidStatus > UmidadeMAX) {
+                                divCorStatus.className = 'status-indicador red';
+
+                            }
+
+                            else if (tempStatus >= 40 ) {
+                                divCorStatus.className = 'status-indicador red';
+
+                            }
+
+                            else if (tempStatus <= 10 ) {
+                                divCorStatus.className = 'status-indicador red';
+
+                            }
+
+                            else if (tempStatus > TempMAX) {
+                                divCorStatus.className = 'status-indicador yellow';
+
+                            }
+
+                            else if (tempStatus < TempMIN) {
+                                divCorStatus.className = 'status-indicador yellow';
+
+                            }
+
+                            else if (umidStatus > UmidadeMAX) {
+                                divCorStatus.className = 'status-indicador yellow';
+
+                            }
+
+                            else if (umidStatus < UmidadeMIN) {
+                                divCorStatus.className = 'status-indicador yellow';
+
+                            }
+
+
+                            else {
+                                divCorStatus.className = 'status-indicador green';
+                            }
+
+
+
+
+
+                            listaStatus.appendChild(divStatus);
+                            divStatusContent.appendChild(spanArmazen);
+                            divStatusContent.appendChild(spanTemperatura);
+                            divStatusContent.appendChild(spanUmidade);
+                            divStatusContent.appendChild(spanTemperaturaIdeal);
+                            divStatusContent.appendChild(spanUmidadeIdeal);
+                            divStatusContent.appendChild(divCorStatus);
+                            divStatus.appendChild(divStatusContent);
+                            divStatus.appendChild(imgStatus);
+                            divStatus.addEventListener("click", function(){
+                                mudarArmazem(id);
+                            })
 
 
                         }

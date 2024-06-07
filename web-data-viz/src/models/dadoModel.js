@@ -19,7 +19,7 @@ function alertar(idEmpresa) {
 JOIN armazem as a on d.fkarmazem = a.idarmazem 
 JOIN cafe c on a.fkTipoCafe = c.idcafe 
 WHERE d.temperatura > c.TempMAX OR d.temperatura < c.TempMIN
-OR d.umidade < c.UmidadeMIN OR d.umidade > c.UmidadeMAX AND d.fkempresa = ${idEmpresa};
+OR d.umidade < c.UmidadeMIN OR d.umidade > c.UmidadeMAX AND d.fkempresa = ${idEmpresa} ORDER BY d.dataDado DESC;
    `;
 
     return database.executar(instrucaoSql)
