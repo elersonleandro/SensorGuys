@@ -20,8 +20,8 @@
             <nav class="navbar">
                 <div class="header_center">
                     <ul>
-                        <li id="gerenciar_fun" style="display: none;"><a href="./GerenciarFunc.html">Gerenciar
-                                Funcionários</a></li>
+                        <li id="gerenciar_fun" style="display: none;"><a href="./GerenciarFunc.html">Gerenciar Funcionários</a></li>
+                        <li id="bobia" style="display: none;"><a href="./bobia.html" >BobIA</a></li>
                     </ul>
                 </div>
                 <div class="header_right">
@@ -272,7 +272,7 @@
     function verificarGerente() {
         if (sessionStorage.CARGO_USUARIO == 'gerente' || sessionStorage.CARGO_USUARIO == 'Gerente') {
             gerenciar_fun.style.display = "block"
-
+            bobia.style.display = "block"
         }
     }
 

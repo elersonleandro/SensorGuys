@@ -95,6 +95,8 @@ section
     justify-content: flex-start;
     margin: 20px 0;
     margin-left: 3%;
+    overflow: scroll;
+    scrollbar-width: none;
 
 }
 
