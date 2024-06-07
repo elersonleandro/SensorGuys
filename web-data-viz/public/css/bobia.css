@@ -1,0 +1,69 @@
+body, html {
+    font-family: sofia-normal;
+    src: url("../font/Sofia_Sans_Condensed/SofiaSansCondensed-VariableFont_wght.ttf");
+    background-color: #D9C9BA;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    
+}
+
+#container {
+    width: 100%;
+    height: 100vh;
+    /* margin: 50px auto; */
+    text-align: center;
+    margin-bottom: 0%;
+    bottom: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    color: #1F2A44;
+    margin-top: 0;
+    padding-top: 15%;
+}
+
+textarea[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 400px; ;
+}
+
+select,
+button {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #402019;
+    color: #FFFFFF;
+    border: none;
+}
+
+button:hover {
+    background-color: #736053;
+}
+
+#resposta {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #D0D3D4;
+    border: 1px solid #63666A;
+    text-align: left;
+    display: block;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
