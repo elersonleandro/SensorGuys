@@ -259,3 +259,8 @@
 span {
   margin: 10px auto;
 }
+
+#msg {
+  font-size: 20px;
+  color: red;
+}

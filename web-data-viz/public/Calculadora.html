@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="shortcut icon" href="./assets/img/logo_image.png">
 </head>
-
 <body>
     <header>
         <div class="header">
@@ -60,8 +59,10 @@
                 <p>Quantas sacas você perdeu no ultimo ano?</p>
                 <input id="input_perda" type="number" name="text" class="input"><br>
                 <button onclick="calcular()" class="button">Calcular</button>
+                <br>
+                <div id="msg"></div>
             </div>
-
+            
         </div>
     </div>
 
@@ -126,6 +127,9 @@
 
     if (saca == "" || tipo == "" || perda == "") {
         msg.innerHTML = "Preencha todos os campos!";
+        document.getElementById("span_resposta").style.color = "red";
+    } else if (saca < 0 || perda < 0) {
+        msg.innerHTML = "Insira valores reais!";
         document.getElementById("span_resposta").style.color = "red";
     } else {
         if (tipo == "arabica") {

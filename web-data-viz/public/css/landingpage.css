@@ -315,6 +315,7 @@ body::-webkit-scrollbar-thumb
     backdrop-filter: blur(5px);
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .content_3 .content_section .card_section
